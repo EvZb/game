@@ -1,4 +1,5 @@
-Permission is hereby granted to any person obtaining a copy of this software and associated files (the "Software"), the rights to use, copy, modify, and distribute the Software, subject to the following conditions:
-Distributed copies and modified copies of the Software must contain this (unmodified) license.
-Distributed copies and modified copies of the Software must not be for sale.
-The creator(s) of the Software are not liable for the use and effects of usage of the Software.
+Permission is hereby granted to any person obtaining a copy of this software and associated files (the "Software"), the rights to use, modify, and distribute the Software, subject to the following conditions:
+1. Distributed copies and modified copies of the Software must contain this (unmodified) license.
+2. Copies and modified copies of the Software must not be for sale.
+3. Person agrees that the creators of the Software are not liable for the use, effects of usage, and effects of posession of the Software.
+4. The creators are not liable for any promises reguarding the Software.
