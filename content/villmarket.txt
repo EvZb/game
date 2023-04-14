@@ -1,0 +1,7 @@
+(function SCRIPT() {
+nav("txt",`You are in the village market. You can buy food here.`)
+nav("nav",`${btn("buy meal","if($money>0){$tmp='meal'}else{$tmp='0'};next('villmarket')")} | ${btn("buy pills","if($money>4){$tmp='pill'}else{$tmp='0'};next('villmarket')")} | ${btn("leave","$tmp='none';next('villcenter')")}`)
+if($tmp=="0"){$tmp="none";nav("txt",`You don't have enough money.`)}else{
+if($tmp=="meal"){nav("txt",`You buy and eat your food, restoring your energy.`);$ep=$epmax;$hp=$hpmax;sbu('hp','ep');$money-=1}
+if($tmp=="pill"){nav("txt",`You buy and swallow a pill that increases your energy.`);$epmax+=1;$ep=$epmax;sbu('ep');$money-=5}}
+ELM("script2").remove()})()

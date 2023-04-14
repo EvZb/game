@@ -1,0 +1,4 @@
+(function SCRIPT() {
+nav("txt",`This is a placeholder.`)
+nav("nav",`${btn("leave","next('villcenter')")}`)
+ELM("script2").remove()})()

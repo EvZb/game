@@ -1,0 +1,4 @@
+(function SCRIPT() {$loc="wild"
+nav("txt",`You are in the wildlands.`)
+nav("nav",`${btn("next","$loc='WP0';next('wildpath')")}`)
+ELM("script2").remove()})()
