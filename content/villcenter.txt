@@ -1,3 +1,3 @@
-(function SCRIPT() {let $0=`You are in the village center. ${evnt('It is more crowded here.:25',':100')}`;let $1=`${btn("worldly sect office","next('worldoff')")} | ${btn("market","next('villmarket')")}`
+(function() {let $0=`You are in the village center. ${evnt('It is more crowded here.:25',':100')}`;let $1=`${btn("worldly sect office","next('worldoff')")} | ${btn("market","next('villmarket')")}`
 if($time[1]%28==0){$1+=` | ${btn("competition","next('villcomp')")}`};nav("txt",`${$0}`);nav("nav",`${$1} | ${btn("leave","next('vill')")}`)
 ELM("script2").remove()})()

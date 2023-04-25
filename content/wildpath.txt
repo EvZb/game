@@ -1,4 +1,4 @@
-(function SCRIPT() {let $0=Number($loc.slice(-1));let $1=`You are on a path that leads to the wildlands. `;let $2;let $3=`${btn("toward city","$loc='WP"+($0+1)+"';time('0:0:4:0');next('wildpath')")}`;let $4=`${btn("toward wildlands","$loc='WP"+($0-1)+"';time('0:0:4:0');next('wildpath')")}`
+(function() {let $0=Number($loc.slice(-1));let $1=`You are on a path that leads to the wildlands. `;let $2;let $3=`${btn("toward city","$loc='WP"+($0+1)+"';time('0:0:4:0');next('wildpath')")}`;let $4=`${btn("toward wildlands","$loc='WP"+($0-1)+"';time('0:0:4:0');next('wildpath')")}`
 if(isNaN($0)||$tmp!="none"){$2=`${$3+' | '+$4}`}
 else if($0>8){$2=`${btn("village","next('vill')")+' | '+$4}`;$1+=`There is a village nearby.`}
 else if($0<1){$2=`${$3+' | '+btn("wildlands","next('wildland')")}`;$1=`You are outside the wildlands. You can feel its miasma from here.`}

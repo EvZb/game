@@ -1,4 +1,4 @@
-(function SCRIPT() {$loc="vill";let $0=$dir[$dir0[$dir[0]]].split("x");let $1=`${btn("village center","next('villcenter')")}`
+(function() {$loc="vill";let $0=$dir[$dir0[$dir[0]]].split("x");let $1=`${btn("village center","next('villcenter')")}`
 if($tmp=="none"){nav("txt",`You are in a village. ${evnt("Some people walk past you.:20","Some children are playing nearby.:20","The people here don't seem wary of outsiders.:100")}`)}
 else if($tmp=="hbuy"){$tmp='none';$money-=100;nav("txt",`You can now use the house.`);$0[0]='H';$dir[$dir0[$dir[0]]]=$0.join('x')}else if($tmp=="buyh"){nav("txt",`You can buy a house here. It costs 100 spirit stones.`)}
 if($0[0]=="H"){$1+=` | ${btn("house","next('home')")}`}else{if($tmp=="buyh"&&$money>99){$tmp='none';$1+=` | ${btn("buy","$tmp='hbuy';next('vill')")}`}else{$tmp='none';$1+=` | ${btn("house","$tmp='buyh';next('vill')")}`}}
