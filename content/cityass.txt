@@ -1,3 +1,3 @@
-(function() {let $1=`You are in the sect association.`;let $0=``
-$0+=`<br><br>${btn('leave',"next('city')")}`;nav('txt',`${$1}`);nav('nav',`${$0}`)
-ELM("script2").remove()})()
+(function() {$t=`You are in the sect association.`;$n=``
+$0+=`<br><br>${btn('leave',"next('city')")}`
+end()})()
