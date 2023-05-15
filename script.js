@@ -13,6 +13,7 @@ function next($a) {let $1=document.createElement("script");document.body.appendC
 function slist($a,$b) {let $1='<select id="'+$a+'" style="background: #888">';let $2=$b.split(',');function $F($c) {let $3=$2[$c].split(':');$1+=('<option value="'+$3[1]+'">'+$3[0]+'</option>')};Object.keys($2).forEach($F);$1+='</select>';return($1)}
 function time($a) {let $1=$a.split(':').map(Number);let $2=$time;let $3;let $4;$2[0]+=$1[0];$2[1]+=$1[1];$2[2]+=$1[2];$2[3]+=$1[3];if($2[3]>59){$2[3]-=60;$2[2]+=1;$ep-=1};if($2[2]>23){$2[2]-=24;$2[1]+=1};if($2[1]>365){$2[1]-=365;$2[0]+=1};if(day()){$4='☀️ '}else{$4='🌙 '};if($2[3]<10){$3='0'+$2[3]}else{$3=$2[3]};nav('hour',$4+$2[2]+':'+$3);$time=$2;$ep-=($1[2]);sbu('ep')}
 function day() {if($time[2]>5&&$time[2]<20){return(true)}else{return(false)}}
+function pic($a) {return("<img src='img/"+$a+".png'>")}
 function evnt() {let $1;let $2;function $F($a) {$2=$a.split(':');if(rng(100/(0+$2[1]))==1){$1=($2[0])}else{return('true')}};Object.values(arguments).every($F);return($1)}
 function combat($a) {let $0=$a.split(".");$0[1]=Number($0[1]);$0[2]=Number($0[2]);$0[3]=Number($0[3]);$cbt=$0;$tmp="cbt";next('combat')}
 function ccolor($a) {let $1=$imgc;function $F($b) {ELM("c"+(2+$b)+"img").style.webkitFilter="hue-rotate("+$1[$b]+"deg)"};if($a=='all'){Object.keys($1).map(Number).forEach($F)}else{if($1[$a]==360){$1[$a]=0};$1[$a]+=36;$F($a);$imgc=$1}}
