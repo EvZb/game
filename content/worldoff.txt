@@ -1,4 +1,0 @@
-(function() {
-nav("txt",`You are at the local office of the worldly sect. Outsiders can trade or take up work here.`)
-nav("nav",`${btn("beast hunting","$tmp='bhi';next('bhunt')")} | ${btn("ghost hunting","next('ghunt')")} | ${btn("leave","next($loc)")}`)
-ELM("script2").remove()})()

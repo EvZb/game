@@ -1,3 +1,0 @@
-(function() {
-
-ELM("script2").remove()})()
