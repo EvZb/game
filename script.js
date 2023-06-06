@@ -1,5 +1,5 @@
 $V=["hp","hpm","ep","epm","lvl","xp","money","tmp","loc","cbt","time","img","imgc","book","dir","sp"];$V0=["time","img","imgc","book","dir","sp"];$V1=[10,10,10,10,0,0,0,"none","none","none","0X0X0X0","0X0X0","0X0X0X0","noneXnoneXnone",'EX0X0X0X0X0X0X0X0X0','0X0X0X0X0X0X0X0X0'];$t=``;$n=``;$sp0=['Fire','Water','Metal','Ice','Light','Dark','Life','Evil','Curse']
-$hpt=['<em>NEAR DEATH</em>!','severely injured!','hurt','pained','healthy','very healthy'];$ept=['<em>EXHAUSTED</em>!','weak!','fatigued','normal','energetic','vigorous'];$cc=['#B44','#B4B','#B84','#BB4','#4B4','#44B'];$dir0={C:1,N:2,NE:3,E:4,SE:5,S:6,SW:7,W:8,NW:9,$:function(){return($dir[$dir0[$dir[0]]])}};$lst=new Array(7)
+$hpt=['<em>NEAR DEATH</em>!','severely injured!','hurt','pained','healthy','very healthy'];$ept=['<em>EXHAUSTED</em>!','weak!','fatigued','normal','energetic','vigorous'];$cc=['#B44','#B4B','#B84','#BB4','#4B4','#44B'];$dir0={C:1,N:2,NE:3,E:4,SE:5,S:6,SW:7,W:8,NW:9,F:function(){return($dir[$dir0[$dir[0]]])}};$lst=new Array(7)
 function ELM($a) {return(document.getElementById($a))}
 function end($a,$b) {nav('txt',$t);nav('nav',$n);ELM("script2").remove()}
 function nav($a,$b) {ELM($a).innerHTML=$b}
