@@ -1,2 +1,4 @@
-(function() {$t=`You are at the arena.`;$n=`${btn('leave',"next('city')")}`
-end()})()
+(function () {
+    $t = `You are at the arena.`; $n = `${btn('leave', "next('city')")}`
+    end()
+})()

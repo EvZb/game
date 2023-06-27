@@ -1,17 +1,17 @@
-$V=["hp","hpm","ep","epm","lvl","xp","money","tmp","loc","cbt","time","img","imgc","book","dir"];$V0=["time","img","imgc","book","dir"];$V1=[10,10,10,10,0,0,0,"none","none","none","0X0X0X0","0X0X0","0X0X0X0","noneXnoneXnone",'EX0X0X0X0X0X0X0X0X0'];$t=``;$n=``
-$hpt=['<em>NEAR DEATH</em>!','severely injured!','hurt','pained','healthy','very healthy'];$ept=['<em>EXHAUSTED</em>!','weak!','fatigued','normal','energetic','vigorous'];$cc=['#B44','#B4B','#B84','#BB4','#4B4','#44B'];$dir0={C:1,N:2,NE:3,E:4,SE:5,S:6,SW:7,W:8,NW:9,$:function(){return($dir[$dir0[$dir[0]]])}};$lst=new Array(7)
+$V=["hp","hpm","ep","epm","lvl","xp","money","tmp","loc","cbt","time","img","imgc","book","dir","sp"];$V0=["time","img","imgc","book","dir","sp"];$V1=[10,10,10,10,0,0,0,"none","none","none","0X0X0X0","0X0X0","0X0X0X0","noneXnoneXnone",'EX0X0X0X0X0X0X0X0X0','0X0X0X0X0X0X0X0X0'];$t=``;$n=``;$sp0=['Fire','Water','Metal','Ice','Light','Dark','Life','Evil','Curse']
+$hpt=['<em>NEAR DEATH</em>!','severely injured!','hurt','pained','healthy','very healthy'];$ept=['<em>EXHAUSTED</em>!','weak!','fatigued','normal','energetic','vigorous'];$cc=['#B44','#B4B','#B84','#BB4','#4B4','#44B'];$dir0={C:1,N:2,NE:3,E:4,SE:5,S:6,SW:7,W:8,NW:9,F:function(){return($dir[$dir0[$dir[0]]])}};$lst=new Array(7)
 function ELM($a) {return(document.getElementById($a))}
 function end($a,$b) {nav('txt',$t);nav('nav',$n);ELM("script2").remove()}
 function nav($a,$b) {ELM($a).innerHTML=$b}
 function rng($a) {return(Math.floor(Math.random()*$a+1))}
 function per100($a,$b) {let $1=(100*Number($a/$b)).toFixed();return($1)}
-function toggledis($a,$b) {let $1=ELM($a);let $2=ELM($b);function CLR() {let $3=["jdis","cdis","sdis","infodisplay"];function $F($a) {ELM($a).style.display="none"};$3.forEach($F)};if($1.style.display&&$2.style.display=="block"){CLR()}else{CLR();$1.style.display="block";$2.style.display="block"}}
+function toggledis($a,$b) {let $1=ELM($a);let $2=ELM($b);let $3=["journal","cheats","savemenu","infodisplay"];function $F($a) {ELM($a).style.display="none"};if($1.style.display&&$2.style.display=="block"){$3.forEach($F);}else{$3.forEach($F);next($b);$1.style.display="block";$2.style.display="block"}}
 function sbu() {function $F($a) {let $1=per100(eval("$"+$a),eval("$"+$a+"m"));let $2=ELM($a+"bar");if($1<0){$1=0};$2.style.width=$1+"%";$1=Math.floor($1/20);$2.style.background=$cc[$1];nav($a+"text",col($cc[$1],eval('$'+$a+'t[$1]')))};Object.values(arguments).forEach($F)}
 function col($a,$b) {return("<font color="+$a+">"+$b+"</font>")}
 function btn($a,$b) {return('<button class="btxt" onclick="'+$b+'"><big>'+$a+'</big></button>')}
 function next($a) {let $1=document.createElement("script");document.body.appendChild($1);$1.id="script2";$1.src="content/"+$a+".js"}
 function slist($a,$b) {let $1='<select id="'+$a+'" style="background: #888">';let $2=$b.split(',');function $F($c) {let $3=$2[$c].split(':');$1+=('<option value="'+$3[1]+'">'+$3[0]+'</option>')};Object.keys($2).forEach($F);$1+='</select>';return($1)}
-function time($a) {let $1=$a.split(':').map(Number);let $2=$time;let $3;let $4;$2[0]+=$1[0];$2[1]+=$1[1];$2[2]+=$1[2];$2[3]+=$1[3];if($2[3]>59){$2[3]-=60;$2[2]+=1;$ep-=1};if($2[2]>23){$2[2]-=24;$2[1]+=1};if($2[1]>365){$2[1]-=365;$2[0]+=1};if(day()){$4='☀️ '}else{$4='🌙 '};if($2[3]<10){$3='0'+$2[3]}else{$3=$2[3]};nav('hour',$4+$2[2]+':'+$3);$time=$2;$ep-=($1[2]);sbu('ep')}
+function time($a) {let $1=$a.split(':').map(Number);let $2=$time;let $3;$2[0]+=$1[0];$2[1]+=$1[1];$2[2]+=$1[2];$2[3]+=$1[3];if($2[3]>59){$2[3]-=60;$2[2]+=1;$ep-=1};if($2[2]>23){$2[2]-=24;$2[1]+=1};if($2[1]>365){$2[1]-=365;$2[0]+=1};if(day()){$3='☀️ '}else{$3='🌙 '};$3+=$2[2]+':';if($2[3]<10){$3+='0'+$2[3]}else{$3+=$2[3]};nav('hour',$3);$time=$2;$ep-=($1[2]);sbu('ep')}
 function day() {if($time[2]>5&&$time[2]<20){return(true)}else{return(false)}}
 function pic($a) {return("<img src='img/"+$a+".png'>")}
 function evnt() {let $1;let $2;function $F($a) {$2=$a.split(':');if(rng(100/(0+$2[1]))==1){$1=($2[0])}else{return('true')}};Object.values(arguments).every($F);return($1)}

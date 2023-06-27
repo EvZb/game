@@ -16,8 +16,8 @@ Permission is hereby granted to any person obtaining a copy of this software and
 Health: You are<br><div id="hptext"></div><div class="bar"><div id="hpbar" class="bar2"></div></div>
 Energy: You are<br><div id="eptext"></div><div class="bar"><div id="epbar" class="bar2"></div></div>
 </div><div id="sidebarmenu">
-<button class="menubutton" onclick="next('journal');toggledis('infodisplay','jdis')">JOURNAL</button>
-<button class="menubutton" onclick="next('cheats');toggledis('infodisplay','cdis')">CHEATS</button>
-<button class="menubutton" onclick="next('savemenu');toggledis('infodisplay','sdis')">SAVE / LOAD</button>
-</div></sidebar><div id="infodisplay"><div id="sdis" class="hid"></div><div id="jdis" class="hid"></div><div id="cdis" class="hid"></div>
+<button class="menubutton" onclick="toggledis('infodisplay','journal')">JOURNAL</button>
+<button class="menubutton" onclick="toggledis('infodisplay','cheats')">CHEATS</button>
+<button class="menubutton" onclick="toggledis('infodisplay','savemenu')">SAVE / LOAD</button>
+</div></sidebar><div id="infodisplay"><div id="savemenu" class="hid"></div><div id="journal" class="hid"></div><div id="cheats" class="hid"></div>
 </div><div id="game"><div id="txt"></div></div><div id="nav"></div><a id="fdl" class="hid"></a><input id="fileinput" class=hid type="file" onchange="loadfile(this.files[0])"/><script src="script.js"></script></body></html>
