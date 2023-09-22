@@ -1,5 +1,5 @@
 <!doctype html><html lang="en">
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>UNNAMED GAME</title><link rel=stylesheet href=css.css></link>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>UNNAMED GAME</title><link rel=stylesheet href=css.css>
 <!--
 Permission is hereby granted to any person obtaining a copy of this software and associated files (the "Software"), the rights to use, modify, and distribute the Software, subject to the following conditions:
 1. Distributed copies and modified copies of the Software must contain this (unmodified) license.
@@ -8,16 +8,17 @@ Permission is hereby granted to any person obtaining a copy of this software and
 4. The creators are not liable for any statements, promises, and implications regarding the Software.
 -->
 </head><body>
-<div id="intro" style="position:absolute;width:100%;height:100%;z-index: 1;box-sizing:border-box;padding:20%;background-color:black;text-align:center"><button class="btxt" onclick="varld();ELM('sidebar').classList.remove('hid');if(localStorage.UGsD==undefined){localStorage.UGsD=$lst.join()}else{$lst=localStorage.UGsD.split(',')};$dir[0]='E';sbu('hp','ep');next('start')"><big>Start</big></button></div>
-<sidebar id="sidebar" class="hid"><div id="gametitle">UNNAMED GAME<small style="color: firebrick"> by EvZb</small><small style="color: black">ඞ</small></div><div id="devinfo">Version: 0 (DEV)</div>
-<div id="characterframe" style="display:none"><img id="c0img" class="cimg" src="img/cbase.png"><img id="c1img" class="cimg" src="img/ccolor.png"><img id="c2img" class="cimg" src="img/eyes.png"><img id="c3img" class="cimg" src="img/1x2T.png"><img id="c4img" class="cimg" src="img/1x2T.png"><img id="c5img" class="cimg" src="img/1x2T.png"><img id="cimg" src="img/1x2T.png"></div>
-<div id="gamestatustext" style="text-align: center"><span id="hour">0:00</span></div>
-<div id="gamestatus">
-Health: You are<br><div id="hptext"></div><div class="bar"><div id="hpbar" class="bar2"></div></div>
-Energy: You are<br><div id="eptext"></div><div class="bar"><div id="epbar" class="bar2"></div></div>
-</div><div id="sidebarmenu">
-<button class="menubutton" onclick="toggledis('infodisplay','journal')">JOURNAL</button>
+<sidebar id="sidebar"><div id="gametitle">UNNAMED GAME<small style="color: firebrick"> by EvZb</small><small style="color: black">ඞ</small></div><div id="devinfo">Version: 0 (DEV)</div>
+<div id="characterframe" style="display: none"><img id="c0img" class="cimg" src="img/cbase.png"><img id="c1img" class="cimg" src="img/ccolor.png"><img id="c2img" class="cimg" src="img/eyes.png"><img id="c3img" class="cimg" src="img/1x2T.png"><img id="c4img" class="cimg" src="img/1x2T.png"><img id="c5img" class="cimg" src="img/1x2T.png"><img id="cimg" src="img/1x2T.png"></div>
+<div id="gamestatustext" class="hid" style="text-align: center"><span id="hour">0:00</span></div>
+<div id="gamestatus" class="hid">
+Health: <span id="hptext"></span><div class="bar"><div id="hpbar" class="bar2"></div></div>
+Energy: <span id="eptext"></span><div class="bar"><div id="epbar" class="bar2"></div></div>
+Elemental Qi: <span id="qitext"></span><div class="bar"><div id="qibar" class="bar2"></div></div>
+</div><div id="sidebarmenu" class="hid">
+<button class="menubutton" onclick="toggledis('infodisplay','character')">CHARACTER</button>
 <button class="menubutton" onclick="toggledis('infodisplay','cheats')">CHEATS</button>
 <button class="menubutton" onclick="toggledis('infodisplay','savemenu')">SAVE / LOAD</button>
-</div></sidebar><div id="infodisplay"><div id="savemenu" class="hid"></div><div id="journal" class="hid"></div><div id="cheats" class="hid"></div>
-</div><div id="game"><div id="txt"></div></div><div id="nav"></div><a id="fdl" class="hid"></a><input id="fileinput" class=hid type="file" onchange="loadfile(this.files[0])"/><script src="script.js"></script></body></html>
+</div></sidebar><div id="infodisplay"><div id="savemenu" class="hid"></div><div id="character" class="hid"></div><div id="cheats" class="hid"></div>
+</div><div id="game"><div id="txt"></div></div><div id="nav"><button class="btxt" onclick="next('intro0')"><big>Start</big></button></div>
+<a id="fdl" class="hid"></a><input id="fileinput" class=hid type="file" onchange="loadfile(this.files[0])"/><script src="script.js"></script></body></html>

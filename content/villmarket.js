@@ -1,9 +1,7 @@
-(function () {
-    $t = `You are in the village market. You can buy food here.`
-    $n = `${btn("buy meal", "if($money>0){$tmp='meal'}else{$tmp='0'};next('villmarket')")} | ${btn("buy pills", "if($money>4){$tmp='pill'}else{$tmp='0'};next('villmarket')")} | ${btn("leave", "$tmp='none';next('villcenter')")}`
-    if ($tmp == "0") { $tmp = "none"; $n = `You don't have enough money.` } else {
-        if ($tmp == "meal") { $t = `You buy and eat your food, restoring your energy.`; $ep = $epm; $hp = $hpm; sbu('hp', 'ep'); $money -= 1 }
-        if ($tmp == "pill") { $t = `You buy and swallow a pill that increases your energy.`; $epm += 1; $ep = $epm; sbu('ep'); $money -= 5 }
-    }
+(function () {let $1=[]
+    $t = `You are in the village market. You can buy things here.`
+    $n = `${slist("buy","(1) Food:0,(5) Health Pill:1,(5) Energy Pill:2,(5) Qi Pill:3,(10) Sword:4,(10) Clothes:5")+' '+btn("buy","$tmp=ELM('buy').value;next('villmarket')")} | ${btn("leave", "$tmp='none';next('villcenter')")}`
+    if ($tmp != "none") { $1=[1,5,5,5,10,10];if($money<$1[$tmp]){$t=`You don't have enough money.`}else{$money-=$1[$tmp];switch(Number($tmp)){case 0:$ep=$epm;$hp=$hpm;sbu('hp','ep');break;case 1:iadd('Health Pill--1--+1 max hp--hpx1Xhpmx1--1');
+    break;case 2:iadd('Energy Pill--1--+1 max ep--epx1Xepmx1--1');break;case 3:iadd('Qi Pill--1--+1 max qi--qix1Xqimx1--1');break;case 4:iadd('Sword--2--+1 atk--atkx1--1');break;case 5:iadd('Clothes--3--+1 def--defx1--1');break;};$tmp='none'}}
     end()
 })()
