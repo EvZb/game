@@ -14,7 +14,7 @@ function slist($a,$b) {let $1='<select id="'+$a+'" style="background: #888">';le
 function time($a) {let $2=$time;let $3;$2[0]+=$a[0];$2[1]+=$a[1];$2[2]+=$a[2];$2[3]+=$a[3];if($2[3]>59){$2[3]-=60;$2[2]+=1;$ep-=1;$qi+=1};if($2[2]>23){$2[2]-=24;$2[1]+=1};if($2[1]>365){$2[1]-=365;$2[0]+=1};if(day()){$3='☀️ '}else{$3='🌙 '};$3+=$2[2]+':';if($2[3]<10){$3+='0'+$2[3]}else{$3+=$2[3]};nav('hour',$3);$time=$2;$ep-=($a[2]);$qi+=$a[2];sbu('ep','qi')}
 function day() {if($time[2]>5&&$time[2]<20){return(true)}else{return(false)}}
 function iuse($a) {if(isNaN($a)){let $b=Number($a.slice(0,-1));if($item[$b][4]>1){$item[$b][4]-=1}else{$item.splice($b,1);if($item.length<1){$items=['none']}}}else{if($item[$a][1]==1){ieff($item[$a][3]);iuse($a+"x")}else{if($equip[$item[$a][1]-2]==-1){equip($a,$item[$a][1]-2)}}}}
-function ieff($a,$0=1) {if($a!='none'){$a=$a.split('X');function $F($b,$c){$a[$c]=$b.split('x');window['$'+$a[$c][0]]+=$a[$c][1]*$0;sbu('hp','ep','qi')};$a.forEach($F)}}
+function ieff($a,$0=1) {if($a!='none'){$a=$a.split('X');function $F($b,$c){$a[$c]=$b.split('x');window['$'+$a[$c][0]]+=$a[$c][1]*$0};$a.forEach($F);sbu('hp','ep','qi')}}
 function iadd($a) {if($items.includes($a)){let $1=$item[$items.indexOf($a)];$1[4]=Number($1[4])+1}else{$item.push($a.split('--'))};function $F($a){$items.push($a.join('--'))};$items=[];$item.forEach($F)}
 function equip($a,$b) {let $1=$equip[$b];let $2=$item[$a];if($a!='none'){iuse($a+'x');$equip[$b]=$2.join('--');ieff($2[3])}else{ieff($1.split('--')[3],-1);iadd($1);$equip[$b]=-1}}
 function pic($a) {return("<img src='img/"+$a+".png'>")}
