@@ -1,8 +1,8 @@
-$V=["hp","hpm","ep","epm","qi","qim","atk","def","money","tmp","loc","cbt","lvl","xp","enemy","time","img","imgc","book","dir","person","items","equip"];$VA=["lvl","xp","enemy","time","img","imgc","book","dir","person","items","equip"];$VV=[10,10,10,10,10,10,1,0,0,"none","none","none","1!1!1","0!0!0","none","0!0!0!0","0!0!0","0!0!0!0","none!none!none",'o!!0','none','none','-1!-1']
+$V=["hp","hpm","ep","epm","qi","qim","atk","def","money","tmp","loc","cbt","stat","lvl","xp","enemy","time","img","imgc","book","dir","person","items","equip"];$VA=["stat","lvl","xp","enemy","time","img","imgc","book","dir","person","items","equip"];$VV=[10,10,10,10,10,10,1,0,0,"none","none","none","0!0!0!0","1!1!1!0","0!0!0!0","none","0!0!0!0","0!0!0","0!0!0!0","none!none!none",'o!o!0','none','none','-1!-1']
 namegen=function(){let $1=rng(3);let $2=rng(3);let $3=$nvow.length;$4=$ncon.length;let $5='';let $6='';while($1>0){$5+=$ncon[rng($4)-1]+$nvow[rng($3)-1];$1-=1};$5=$5[0].toUpperCase()+$5.slice(1);while($2>0){$6+=$ncon[rng($4)-1]+$nvow[rng($3)-1];$2-=1};$6=$6[0].toUpperCase()+$6.slice(1);return($5+' '+$6)}
 function ELM($a) {return(document.getElementById($a))}
 function end($a) {ELM("script2").remove();nav('txt',$t);nav('nav',$n);if($a!=undefined){next($a)}}
-function nav($a,$b) {ELM($a).innerHTML=$b}
+function nav($a,$b) {ELM($a).innerHTML=eval('`'+$b+'`')}
 function rng($a) {return(Math.floor(Math.random()*$a+1))}
 function per100($a,$b) {let $1=(100*Number($a/$b)).toFixed();return($1)}
 function toggledis($a,$b) {let $1=ELM($a);let $2=ELM($b);let $3=["character","cheats","savemenu","infodisplay"];function $F($a) {ELM($a).style.display="none"};if($1.style.display&&$2.style.display=="block"){$3.forEach($F);}else{$3.forEach($F);next($b);$1.style.display="block";$2.style.display="block"}}
@@ -20,10 +20,10 @@ function equip($a,$b) {let $1=$equip[$b];let $2=$item[$a];if($a!='none'){iuse($a
 function pic($a) {return("<img src='img/"+$a+".png'>")}
 function loc($a) {let $1=$dir[$dir.length-1];if($a!=undefined){let $2=$a.slice(1);let $3=$dir[$2].split('');if($3.includes($1)){if($a[0]=='-'){$3.splice([$3.indexOf($1)],1)}}else{if($a[0]=='+'){$3.push($1)}};$dir[$2]=$3.join('')}else{return([$dirc[$1],$1])}}
 function evnt() {let $1;let $2;function $F($a) {$2=$a.split(':');if(rng(100/(0+$2[1]))==1){$1=($2[0])}else{return('true')}};Object.values(arguments).every($F);return($1)}
-function combat($a) {let $0;let $1=$a.pop();let $2=$a.pop();if($enemy[0]=='none'){$enemy.splice(0,1)};function $F($c,$d){$0.push($c);if($d>1){$enemy.push($0.join('.'))}};while($2>0){$0=[];$a.forEach($F);$2-=1};$enemy.push($1);next('combat')} //enemy[atk,def,hp,amount,name] $cbt='tmp.loc.next'
+function combat($a) {let $0;let $1=$a.pop();let $2=$a.pop();if($enemy[0]=='none'){$enemy.splice(0,1)};function $F($c,$d){$0.push($c);if($d>2){$enemy.push($0.join('.'))}};while($2>0){$0=[];$a.forEach($F);$2-=1};$enemy.push($1);next('combat')} //combat([atk,def,hp,level,amount,name]) $cbt='tmp.loc.next'
 function ccolor($a) {let $1=$imgc;function $F($b) {ELM("c"+(2+$b)+"img").style.filter="hue-rotate("+$1[$b]+"deg)"};if($a=='all'){Object.keys($1).map(Number).forEach($F)}else{if($1[$a]==360){$1[$a]=0};$1[$a]+=36;$F($a);$imgc=$1}}
 function clothe($a,$b) {if($a=="all"){clothe(0,$img[0]);clothe(1,$img[1]);clothe(2,$img[2])}else{$img[$a]=$b;let $2=["hair","pant","shirt"];if($b<0){$2[$a]="1x2T"}else{$2[$a]+=$b};ELM("c"+(Number($a)+3)+"img").src="img/"+$2[$a]+".png"}}
-function exp() {let $0=['$hp','$ep','$qi'];function $F($a,$b){if(window[$a]<1){$xp[$b]+=Math.floor(50/$lvl[$b]);if($xp[$b]>99){$xp[$b]-=100;$lvl[$b]+=1;window[$a+'m']+=$lvl[$b]}}};$0.forEach($F)}
+function exp($a,$b=0) {if($a==undefined){let $0=['$hp','$ep','$qi'];function $F($c,$d){if(window[$c]<1){$xp[$d]+=Math.floor(50/$lvl[$d]);if($xp[$d]>99){$xp[$d]-=100;$lvl[$d]+=1;window[$c+'m']+=$lvl[$d]}}};$0.forEach($F)}else{$xp[$a]+=$b;if($xp[$a]>99){$xp[$a]-=100;$lvl[$a]+=1}}}
 function tec($a,$b) {let $1=$book;if($a=="add"){if($1.includes('none')){$1[$1.indexOf('none')]=$b}else{nav("txt",`You can't have more than three techniques.`)}}else if($a=="del"){$1[$b]="none"}else if($a<3){if($1[$a]=="none"){return(['','',''])}else{return($1[$a].split('--'))}};$book=$1}
 function varld() {$item=[];function $FF($a,$b) {if(isNaN($VV[$b])){window["$"+$a]=$VV[$b]}else{window["$"+$a]=Number($VV[$b])}};function $F($a) {let $0=$V.indexOf($a);$VV[$0]=$VV[$0].split("!");if(!(isNaN($VV[$0][0]))){$VV[$0]=$VV[$0].map(Number)}};$VA.forEach($F);$V.forEach($FF);sbu('hp');time([0,0,0,0]);clothe('all');ccolor('all')}
 function varsv() {function $F($a,$b) {$VV[$b]=window["$"+$a]};function $FF($a) {let $0=$V.indexOf($a);$VV[$0]=window["$"+$V[$0]].join("!")};$V.forEach($F);$VA.forEach($FF)}
