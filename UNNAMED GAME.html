@@ -1,0 +1,27 @@
+<!doctype html><html lang="en" id="html">
+<head><script src="scriptv.js"></script><script src="scriptf.js"></script><title>UNNAMED GAME</title><link rel=stylesheet href=css.css>
+<!--
+Permission is hereby granted to any person obtaining a copy of this software and associated files (the "Software"), the rights to use, modify, and distribute the Software, subject to the following conditions:
+1. Distributed copies and modified copies of the Software must contain this (unmodified) license.
+2. Copies and modified copies of the Software must not be for sale.
+3. The creators of the Software are not liable for the use, effects of usage, and effects of posession of the Software.
+4. The creators are not liable for any statements, promises, and implications regarding the Software.
+-->
+</head><body>
+<sidebar id="sidebar"><div id="gametitle">UNNAMED GAME<small style="color: firebrick"> by EvZb</small><small style="color: black">ඞ</small></div><div id="devinfo">Version: 0 (DEV)</div>
+<div id="characterframe" class="hid"><img id="back" class="cimg"><img id="tail" class="cimg"><img id="aura" class="cimg"><img id="body" class="cimg"><img id="skin" class="cimg"><img id="eyes" class="cimg"><img id="pendant" class="cimg"><img id="hair" class="cimg"><img id="horn" class="cimg"><img id="bottom" class="cimg"><img id="top" class="cimg"><img id="hat" class="cimg"><img id="background" style="width:100%"><img id="environment" style="width:100%"></div>
+<div id="gamestatustext" class="hid" style="text-align: center"><span id="hour">0:00</span></div>
+<div id="gamestatus" class="hid">
+Health: <span id="hptext"></span><div class="bar"><div id="hpbar" class="bar2"></div></div>
+Energy: <span id="eptext"></span><div class="bar"><div id="epbar" class="bar2"></div></div>
+Spirit: <span id="sptext"></span><div class="bar"><div id="spbar" class="bar2"></div></div>
+Ki: <span id="kptext"></span><div class="bar"><div id="kpbar" class="bar2"></div></div></div>
+<div id="sidebarmenu" class="hid">
+<button class="menubutton" onclick="togdis(1)">CHARACTER</button>
+<button class="menubutton" onclick="togdis(2)">ITEMS</button>
+<button class="menubutton" onclick="togdis(3)">SAVE / LOAD</button>
+<button class="menubutton" onclick="togdis(4)">SETTINGS</button>
+<button class="menubutton" onclick="togdis(5)">CHEATS</button></div>
+</sidebar><div id="infodis"><div id="menu"></div></div>
+<div id="game"><div id="txt"></div></div><div id="nav"><button onclick="elm('gamestatus').classList.remove('hid');elm('gamestatustext').classList.remove('hid');elm('sidebarmenu').classList.remove('hid');elm('characterframe').classList.remove('hid');reset();tmp=0;next('$/intro')"><big>start</big></button></div>
+<a id="fdl" class="hid"></a><input id="fileinput" class=hid type="file" onchange="loadfile(this.files[0])"/></body></html>

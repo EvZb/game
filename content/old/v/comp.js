@@ -1,0 +1,13 @@
+(function () {
+    $t = `The monthly competition is being held today.`; let $1 = ``; let $2 = `\${btn('leave',"$tmp='none';next('v/center')")}`; let $3 = 2; if ($time[2] < 18) { $3 += 2 }; if ($time[2] < 16) { $3 += 2 }
+    if (isNaN($tmp)) { if ($tmp == "none") { if ($time[2] < 6) { $t += ` It is too early to participate.` } else { if ($time[2] > 19) { $t += ` It is too late to participate.` } else { $t += ` The particpant that wins the most rounds will be the winner.`; if ($ep > 0) { $1 = `\${btn('participate',"$tmp=4;$cbt=4;next('v/comp')")} | ` } else { $t += `<br><br>You are too exhuasted to participate.` } }; $1 += `\${btn('watch',"$tmp=4;next('v/comp')")} | ` } } }
+    else {
+        if ($tmp < 4) { time([0,0,$3,0]) }; if ($tmp == 4) { $t = `It is time for the first round. Less than 20 people are participating.`; if ($cbt != "none") { $t += `<br><br>Participants will be provided medical treatment after each round.`; $1 = `\${btn('compete',"$cbt='3.v/comp';combat([1,0,10,0,1,'Contestant'])")} | ` }; $1 += `\${btn('watch',"$tmp=3;next('v/comp')")} | ` }
+        else { if ($cbt != "none") { $ep = $epm; $hp = $hpm; sbu('hp'); $t = `` } else { $t = `You watch the competition. ` } }; if ($tmp == 3) { if ($cbt != "none") { $cbt='2.v/comp'; $1 = `\${btn('compete',"combat([1,0,10,0,1,'Second Contestant'])")} | ` } $t += `It is time for the second round.`; $1 += `\${btn('watch',"exp(1,1);$tmp=2;next('v/comp')")} | ` }
+        else if ($tmp == 2) { $stat[0]+=2; if ($cbt == "win" && $ep > 0) { $stat[2]+=2; $cbt='1.v/comp'; $1 = `\${btn('compete',"combat([2,1,15,0,1,'Third Contestant'])")} | ` } $t += `It is time for the third round. The spectators are more excited.`; $1 += `\${btn('watch',"$tmp=1;next('v/comp')")} | ` }
+        else if ($tmp == 1) { $stat[0]+=3; if ($cbt == "win" && $ep > 0) { $stat[2]+=5; $cbt='0.v/comp'; $1 = `\${btn('compete',"combat([3,1,20,0,1,'Final Contestant'])")} | ` } $t += `It is time for the final round. Everone is waiting in anticipation.`; $1 += `\${btn('watch',"$tmp=0;next('v/comp')")} | ` }
+        else if ($tmp == 0) { $stat[0]+=5; if ($cbt == "win") { $stat[2]+=10; $money += 25; $t = `You are the winner of the competition. The reward is 25 spirit stones.` } else { $t += `The competition has ended. After the winner is delcared, the spectators begin to leave.` } }
+    }
+    if ($cbt == "lose") { $t += `<br><br>You lost the competition.` }; $cbt = "none"; $n = `${$1 + $2}`
+    end()
+})()
