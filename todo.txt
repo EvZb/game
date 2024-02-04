@@ -1,0 +1,18 @@
+TODO (NOT ORDERED BY PRIORITY):
+
+1. add images and character designer (there are some variable made for this)
+2. add world levels
+3. add content
+4. add combat
+5. add settings
+6. verify function functionality
+
+CHANGES FROM OLD VERSION:
+
+-changed variables and functions to be a little more readable by using comments
+-content has been removed for upgrade to procedural generation style
+
+NOTES:
+
+-working character sprites
+-working on procedural worlds
