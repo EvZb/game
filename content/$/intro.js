@@ -22,11 +22,11 @@
     tmp=5
         t=`What are you? (Human or Demon are suggested)`
         n=`Race: \${lst('bod',"Human:0,Demon:1,Abyss:2,Beast:3,Ghost:4","body[0]=elm('bod').value")} | \${btn('mystery',"body[0]=rng(4);next('$/intro')")} | \${btn('next',"next('$/intro')")}`; break;
-    case 5://stats
+    case 5://world
     tmp=6
-        t=`Choose starting world. Each world is associated with a race. It is suggested to start in your associated world.<br><br>`
-        t+=`Ligrowa (human), Shapof (Demon), Elaco (Abyss), Blomes (Beast), Psevim (Ghost)`
-        n=`\${lst('wld',"Ligrowa:Ligrowa,Shapof:Shapof,Elaco:Elaco,Blomes:Blomes,Psevim:Psevim")} | \${btn('start',"tmp=x;w=elm('wld').value+'/';next(w+'intro')")}`; break;
+        t=`Choose starting world alignment. It is suggested to start in your associated world.<br><br>`
+        t+=`Good (Human), Death (Demon), Chaos (Abyss), Neutral (Beast), Soul (Ghost)`
+        n=`world alignment: \${lst('wld',"Good:Good,Death:Death,Chaos:Chaos,Neutral:Neutral,Soul:Soul")} | \${btn('start',"tmp=x;wtype=elm('wld').value;w=wtype+'/';loc[0]=wgen.indexOf('0');next(w+'intro')")}`; break;
     }; n+=`<br><br>\${btn('back',"tmp=tmp-2;next('$/intro')")}`
     end()
 })()
