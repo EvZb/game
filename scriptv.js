@@ -9,6 +9,7 @@ arrpn=[x,x,'body','pfav','sex',x,'lvl','pxp','age']//used in ppl() to indicate i
 setting=[16]
 imgs=['background','environment','back','tail','aura','body','skin','eyes','pendant','hair','horn','bottom','top','hat']
 //arrays player
+loc=[0,0,0]//int coords(0-9), x travel progress(0-99), y travel progress(0-99)
 imgv=['x']//the images used in the character frame
 stat=[1]//int money
 trt=['trait name']//str
@@ -32,8 +33,10 @@ lvl=[0]//int level
 pxp=[0]//int experience to level
 age=[0]//int age
 //arrays worlds
-worlds=[x]//str world name
+world=[x]//str world name
 wgen=[x]//str world generated areas
+wgen2=[x]//str features in world generated ares
+wtype=[x]//str world atype
 wppl=[x]//for saving and loading the people of each world
 weight=[0,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2,3,3,3,3,4,4,4,5,5,5,6,6,7,7,8,9]//used for rng wieghting ex: weight[rng(31)]
 //arrays general
@@ -45,8 +48,8 @@ stringv=['tmp','tmp2','ally','w','pname']//variables to initialize and save as s
 numv=['tmpn','ngen','hp','hpm','ep','epm','sp','spm','kp','kpm']//variables to initialize and save as numbers
 ss=[x,x,x,x,x]//default values for stringv varibles
 sn=[0,1,1,1,1,1,1,1,1,1]//default values for numv variables
-arrn=['sn','pfav','sex','itma','itmt','itmr','time','trtl','trtx','kiv','body','lvl','pxp','dgr','stat','hp','ep','ki']//number array names (save/load)
-arrs=['ss','newpsn','psn','psnp','psna','trt','kie','slot','eqp','itme','itmd','itm','imgv']//string array names (save/load)
+arrn=['sn','pfav','sex','itma','itmt','itmr','time','trtl','trtx','kiv','body','lvl','pxp','dgr','stat','hp','ep','ki','loc']//number array names (save/load)
+arrs=['ss','newpsn','psn','psnp','psna','trt','kie','slot','eqp','itme','itmd','itm','imgv','wtpe']//string array names (save/load)
 newpsn=[]//names of temporary npcs (psn)
 saves=[0,0,0,0,0,0,0]//used to track saves
 sv=[[],[],[],[],'','']// used in save/load functions
@@ -60,7 +63,7 @@ cfimg=["bgimg","back","eff1","body","eff2","eyes","hair","bottom","top"]//the im
 desc={
 aff:[['light','growth','water'],['shade','poison','fire'],['electric','air','cold'],['blood','metal','space'],['psy','evil','moon']],
 body:['Human','Demon','Abyss','Beast','Ghost'],
-atype:['good','death','chaos','neutral','soul'],
+atype:['Good','Death','Chaos','Neutral','Soul'],
 itypes:['equipment','charm','consumable','item','consumable'],//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval
 slots:['top','bottom','pendant','weapon','ranged','hidden','soul'],
 psn:['psn','psna','body','pfav','sex','ptrt','lvl','pxp','age'],
