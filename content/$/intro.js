@@ -26,7 +26,7 @@
     tmp=6
         t=`Choose starting world alignment. It is suggested to start in your associated world.<br><br>`
         t+=`Good (Human), Death (Demon), Chaos (Abyss), Neutral (Beast), Soul (Ghost)`
-        n=`world alignment: \${lst('wld',"Good:Good,Death:Death,Chaos:Chaos,Neutral:Neutral,Soul:Soul")} | \${btn('start',"tmp=x;wtype=elm('wld').value;w=wtype+'/';loc[0]=wgen.indexOf('0');next(w+'intro')")}`; break;
+        n=`world alignment: \${lst('wld',"Good:Good,Death:Death,Chaos:Chaos,Neutral:Neutral,Soul:Soul")} | \${btn('start',"tmp=x;wgen=[];wgen2=[];world=[];worldgen(elm('wld').value);loc[0]=wgen[0].indexOf('0');w=wtype+'/';next(w+loc[0])")}`; break;
     }; n+=`<br><br>\${btn('back',"tmp=tmp-2;next('$/intro')")}`
     end()
 })()
