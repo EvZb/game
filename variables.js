@@ -8,7 +8,7 @@ n=''//str js convert to html game navigation (save/load)
 m=0//str keeps track of what menu is open
 x='none'//used to simplify script | 'none' is used instead of empty strings in variables/arrays because of saving and loading problems
 strv=['tmp','tmp2','saving','combat','w','_']//variables to initialize and save as strings (tmp/tmp2 are variables used by scenes, saving is for disabling the save menu, w is for world type in file path _ is the path of the last scene used)
-numv=['tmpn','namegennum','fsize','cworldid']//variables to initialize and save as numbers (tmpn is used by scenes namegennum is the selected name generator, fsize is font size, cworldid is the index of the current world)
+numv=['tmpn','namegennum','fsize','cworldid','mwsize']//variables to initialize and save as numbers (tmpn is used by scenes namegennum is the selected name generator, fsize is font size, cworldid is the index of the current world)
 //arrays player
 tech=[0,-1,-1,-1,-1,-1]//int index of the associated affinity [weapon, body, energy, spiritual, faith, effect]
 stat=[0]//int [0=money]
@@ -68,7 +68,7 @@ time=[0,0,0,0,0]//int m/h/D/M/Y
 ids=[0,0]//int the highest number id used (pid/wid)
 saves=[0,0,0,0,0,0,0]//used to track saves
 ss=[x,x,'T','F','world/',x]//default values for stringv varibles
-sn=[0,1,16,0]//default values for numv variables
+sn=[0,1,16,0,2]//default values for numv variables
 arrn=['tech','stat','affc','afft','affr','afflvl','affxp','atk','def','hp','ep','sp','itma','itmt','itmr','mata','matt','matf','matc','matr','pid','pfav','lvl','age','pxp','wid','wsize','pos','time','ids','sn']//number array names (save/load)
 arrs=['aff','itm','itmd','eqp','mat','psn','psna','psnl','ptrt','peqp','race','wname','wchunk','wchunkd','wppl','chunk','chunkd','imgv','tmppsn','ss']//string array names (save/load)
 sv=[[],[],[],[],'','']// used in save/load functions

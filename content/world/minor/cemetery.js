@@ -1,4 +1,5 @@
 (function () {
+    //data: [graves explored] [graves total] [chapel searches] [chapel items] [diety]
     switch(tmpn){
         case 0://entrance
             if(sp[0]<1){
