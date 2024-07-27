@@ -1,7 +1,8 @@
 //restricted characters in save variables [¦,§,°] (used for save data)
 //using strings as arrays split characters [!,~,.] (mostly depends on the variable,! is most common)
+//every variable defined as an array should only be an array | every array should be either integers (int) or strings (str), but not both
 //script variables
-version='0 (DEV)'
+version='0 (DEV)'//str currently does nothing
 t=''//str js convert to html game text (save/load)
 n=''//str js convert to html game navigation (save/load)
 m=0//str keeps track of what menu is open
@@ -57,7 +58,7 @@ wchunkd=[x]//str combined chunk data [chunk~chunk]
 wppl=[x]//for saving and loading the people of each world
 //loaded current world data
 chunk=['forest!city!cave']//chunk location data [terrain!major!minor]
-chunkd=['!!!!']//chunk data [data!!data major!!data minor]
+chunkd=['~~']//chunk data [data ~ data major ~ data minor]
 //arrays general
 imgv=[x]//the images used in the character frame
 pos=[0,0,0]//X,Y,Direction(0=N,7=NW)

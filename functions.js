@@ -4,7 +4,7 @@ Array.prototype.cyc=function(index){if(index<0){return(this.toReversed()[Math.ab
 //use functions
 function heal($a=100,$b=0,$c) {let $1=($d)=>{window[$d][0]+=Math.floor((window[$d][1]/100)*$a)+$b;if(window[$d][0]>window[$d][1]){window[$d][0]=window[$d][1]}};if($c==undefined){['hp','ep','sp'].forEach($1)}else{$1($c)}}//heal(%,amount,type)
 function loc($a=0,$b=0) {let $1=wsize[cworldid];let $2=[$a,$b];if($a=='d'){$2[0]=rdirection[pos[2]];$2[1]=rdirection[pos[2]+8]};return((cycle($1,pos[0]+$2[0])*$1)+cycle($1,pos[1]+$2[1]))}//returns the chunk index for the relative pos (or direction if loc('d'))
-function genchunks() {let $1=Array(wsize[cworldid]*wsize[cworldid]);chunk=Array.from($1,()=>{return(`${terrains[rng(terrains.length-1)]}!${majorfeatures[rng(majorfeatures.length-1)]}!${minorfeatures[rng(minorfeatures.length-1)]}`)});chunkd=Array.from($1,()=>{return("!!!!")})}
+function genchunks() {let $1=Array(wsize[cworldid]*wsize[cworldid]);chunk=Array.from($1,()=>{return(`${terrains[rng(terrains.length-1)]}!${majorfeatures[rng(majorfeatures.length-1)]}!${minorfeatures[rng(minorfeatures.length-1)]}`)});chunkd=Array.from($1,()=>{return("~~")})}
 function genpsn() {return(window['namegen'+namegennum]()+'!'+rng(81,18)+'!'+rng(2)+rng(4)+rng(4)+rng(0)+rng(4)+rng(3))}
 function trait($a) {let $0=trt.indexOf($a);if($0>-1){return(trt[$0],trtl[$0],$0)}}
 function rng($a,$b=0) {return(Math.floor(Math.random()*($a+1))+$b)}
