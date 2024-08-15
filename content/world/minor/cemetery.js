@@ -29,10 +29,9 @@
             t="You approach a grave."
             n=`\${btn("respect the dead","fun('txt','Thank you.')")} | \${btn("rob","tmpn=6;next()")}`
             break;
-        case 6://robing grave
+        case 6://robbing
             t="You decide to rob the grave."
-            n=`\${btn("dig","tmpn=7;next()")}`//random loot gen(get a random amount of julry betwee 1 and 5 that can be braselet or neklas or mix of the two)/chance that the keeper might see you(take away anything you stole and get kiked out random chanse of it hapening)
-            //chase of getting metiral money chasce that the spirit becomes vengful and attacks
+            n=`\${btn("dig","tmpn=7;next()")}`
             break;
         case 7://loot
             tmp=rng(2)    

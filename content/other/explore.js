@@ -7,7 +7,7 @@
         t=`You are in a ${$1[3]}. `
         if(tmpn>60){t+=`There is a ${$1[0]} ahead. A ${$1[1]} is long behind you.`}else if(tmpn<40){t+=`There is a ${$1[0]} far in the distance. A ${$1[1]} is behind you.`}else{t+=`There is a ${$1[0]} in the distance. A ${$1[1]} is far behind you.`}
         n=`\${btn('walk',"ptime([0,1]);tmp='walk';next()")} | \${btn('turn around',"tmpn=100-tmpn;tmp2='${$1[2]}';pos[2]=(pos[2]+4)%8;next()")}<br><br>`
-        n+=`\${btn('explore',"tmp=x;tmp2=x;next(w+'terrain/${$1[3]}')")}`;break;
+        n+=`\${btn('explore',"tmp=x;tmp2=x;next(w+'terrain/${$1[3]}')")}`;break
     case 'walk'://travelling
         tmpn+=10
         if(tmpn>99){
@@ -21,13 +21,11 @@
             t=`You are walking in the ${$1[3]}. `
             if(tmpn>60){t+=`There is a ${$1[0]} ahead. The ${$1[1]} is long behind you.`}else if(tmpn<40){t+=`There is a ${$1[0]} far in the distance. The ${$1[1]} is behind you.`}else{t+=`There is a ${$1[0]} in the distance. The ${$1[1]} is far behind you.`}
             n=`\${btn('keep walking',"ptime([0,1]);tmp='${$3};next()")} | \${btn('turn around',"tmpn=100-tmpn;tmp2='${$1[2]}';pos[2]=(pos[2]+4)%8;tmp=x;next()")}<br><br>`
-            n+=`\${btn('explore',"tmp=x;tmp2=x;next(w+'terrain/${$1[3]}')")}`};break;
+            n+=`\${btn('explore',"tmp=x;tmp2=x;next(w+'terrain/${$1[3]}')")}`};break
     case 'event'://travel events
         switch(rng(2)){
-            case 0:t+=`nothing happens.`;break;
-            case 1:t+=`see a weirdly shaped rock.`;break;
-            case 2:hp[0]-=2;sbu(['hp']);t+=`a creature bites you.`;break;}
-        if(hp[0]<1){t+=` You lose consciousness.`;n=`${btn("next","tmp='faint!2!other/explore!none';next('other/rest')")}`}else{n=`${btn("next","tmp=x;next()")}`};break;
+            case 0:t+=`nothing happens.`;break}
+        if(hp[0]<1){t+=` You lose consciousness.`;n=`${btn("next","tmp='faint!2!other/explore!none';next('other/rest')")}`}else{n=`${btn("next","tmp=x;next()")}`};break
     }
     end()
 })()

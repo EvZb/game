@@ -10,19 +10,19 @@ x='none'//used to simplify script | 'none' is used instead of empty strings in v
 strv=['tmp','tmp2','saving','combat','w','_']//variables to initialize and save as strings (tmp/tmp2 are variables used by scenes, saving is for disabling the save menu, w is for world type in file path _ is the path of the last scene used)
 numv=['tmpn','namegennum','fsize','cworldid','mwsize']//variables to initialize and save as numbers (tmpn is used by scenes namegennum is the selected name generator, fsize is font size, cworldid is the index of the current world)
 //arrays player
-tech=[0,-1,-1,-1,-1,-1]//int index of the associated affinity [weapon, body, energy, spiritual, faith, effect]
+tech=[0,-1,-1,-1,-1,-1,-1,-1,-1]//int index of the associated affinity [weaponP, weaponE, weaponS, weaponF, body, energy, spiritual, faith, effect]
 stat=[0]//int [0=money]
 aff=['Hands']//str affinity name (basically a skill name)
-affc=[0]//int affinity color (0=Black, 1=White) (2=Red, 3=Green, 4=Blue)
-afft=[2]//int affinity type (0=none,1=skill,2=weapon,3=physical,4=energy,5=mental,6=effect,7=faith)
+affc=[1]//int affinity color (0=Black, 1=Silver, 2=White) (3=Red, 4=Green, 5=Blue)
+afft=[1]//int affinity type (0=none,1=weaponP,2=weaponE,3=weaponS,4=weaponF,5=physical,6=energy,7=spiritual,8=faith,9=effect,10=skill)
 affr=[8]//int affinity rarity (similar to item rarity, 9 is special and means no xp growth) (Acts as a multiplier for certain effects)
-afflvl=[0]
+afflvl=[1]
 affxp=[0]
-atk=[1,0,0]//attack[hp,ep,sp]
+atk=[0,0,0]//attack[hp,ep,sp]
 def=[0,0,0]//defense[hp,ep,sp]
-hp=[5,5,0,0]//current,max,regen,level(level may be used for growth)
-ep=[5,5,0,0]
-sp=[5,5,0,0]
+hp=[5,5,0]//current,max,level(level may be used for growth)
+ep=[5,5,0]
+sp=[5,5,0]
 //arrays items
 itm=[x]//str item name
 itma=[0]//int item amount
@@ -33,7 +33,7 @@ eqp=[x,x,x]//str (slots)
 //arrays materials
 mat=[x]//str material name
 mata=[0]//int material amount
-matt=[0]//int material affinity type (0-4)
+matt=[0]//int material affinity type (5-8 | physical,energy,spiritual,faith)
 matf=[0]//int material form (0=none,1=ingot,ect)
 matc=[0]//int material crafting usage (0=Cooking,1=Smithing,etc)
 matr=[8]//int rarity (0=rare upto 8=notrare or 9=black)
@@ -82,9 +82,9 @@ ptrait=['character(0Bad,1Neutral,2Good)','luck(0Bad,1Poor,2Normal,3Good,#Extreme
 races=['Demon','Human','Abyss','Spirit']
 racev=[['None','Succubus','Zombie','Vampire'],['None','Fox','Dog','Cat'],['None','Curse','Mimic','Slime'],['None','Ghost','God','Elemental']]
 racevm=[['2!2!2','1!2!3','4!1!1','1!3!2'],['2!2!2','1!2!3','3!2!1','1!3!2'],['3!1!2','1!2!3','1!3!2','3!2!1'],['1!2!3','1!3!2','1!1!4','1!4!1']]
-matform=[x,'Ingot','Bottle','Crystal','Bag','Chunk','Ball','Stack']//the type of container for a material
-affcolor=['Black','White','Red','Green','Blue']
-afftype=['none','skill','weapon','physical','energy','spiritual','faith','effect']
+matform=[x,'ingot','bottle','crystal','bag','chunk','ball','stack']//the type of container for a material
+affcolor=['Black','Silver','White','Red','Green','Blue']
+afftype=[x,'physical attack','energy attack','spiritual attack','faith attack','physical','energy','spiritual','faith','effect','skill']
 matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
 terrains=['desert','forest','jungle','mountains','plains','snow','swamp']
 majorfeatures=['city','fort','mine','sect','village']

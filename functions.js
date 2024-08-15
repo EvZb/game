@@ -6,11 +6,10 @@ function heal($a=100,$b=0,$c) {let $1=($d)=>{window[$d][0]+=Math.floor((window[$
 function loc($a=0,$b=0) {let $1=wsize[cworldid];let $2=[$a,$b];if($a=='d'){$2[0]=rdirection[pos[2]];$2[1]=rdirection[pos[2]+8]};return((cycle($1,pos[0]+$2[0])*$1)+cycle($1,pos[1]+$2[1]))}//returns the chunk index for the relative pos (or direction if loc('d'))
 function genchunks() {let $1=Array(wsize[cworldid]*wsize[cworldid]);chunk=Array.from($1,()=>{return(`${terrains[rng(terrains.length-1)]}!${majorfeatures[rng(majorfeatures.length-1)]}!${minorfeatures[rng(minorfeatures.length-1)]}`)});chunkd=Array.from($1,()=>{return("~~")})}
 function genpsn() {return(window['namegen'+namegennum]()+'!'+rng(81,18)+'!'+rng(2)+rng(4)+rng(4)+rng(0)+rng(4)+rng(3))}
-function trait($a) {let $0=trt.indexOf($a);if($0>-1){return(trt[$0],trtl[$0],$0)}}
 function rng($a,$b=0) {return(Math.floor(Math.random()*($a+1))+$b)}
 function perc($a,$b) {return((100*Number($a/$b)).toFixed())}
 function next($a=_,$b=2) {let $1=document.createElement("script");if($b>1){_=$a};document.body.appendChild($1);$1.id="script"+$b;$1.src="content/"+$a+".js"}
-function xp($a,$b=0,$c=1) {skill[$a]+=Math.floor($b*($c/skill[$a-1]));if(skill[$a]>99){skill[$a]-=100;skill[$a-1]+=1}}//$a=index of xp in skill. $b=xp add amount. $c=level of xp.
+function xp($a,$b=0,$c=1) {let $1=aff.indexOf($a);affxp[$1]+=Math.floor($b/afflvl[$1])*$c}//$a=affinity. $b=xp add amount. $c=xp quality.
 function num($a) {let $1=$a;if($1<10&&$1>-10){if($1<0){$1='-0'+Math.abs($1)}else{$1='0'+$1}};return($1)}
 function ptime($a) {let $2=[60,24,28,14];$a.forEach(($b,$c)=>{time[$c]+=$b});$2.forEach(($b,$c)=>{if(time[$c]>=$b){time[$c]-=$b;time[$c+1]+=1}});if(time[3]==0&&time[2]>0){time[3]+=1;time[2]-=1};fun('hour',time[1]+':'+num(time[0]))}
 //html functions

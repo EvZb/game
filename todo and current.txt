@@ -12,7 +12,6 @@ TODO (NO PARTICULAR ORDER / SUBJECT TO CHANGE):
 1. add images and character designer (there are some variables made for this) (low prio)
 2. add multiple worlds (after content)
 3. add content (in progress)
-4. add combat (after content)
-5. add settings (low prio)
-6. add npc generation and interactions (after content)
-7. verify function functionality
+4. add settings (low prio)
+5. add npc generation and interactions (after content)
+6. verify function functionality

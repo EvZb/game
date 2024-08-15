@@ -1,7 +1,7 @@
 html {box-sizing: border-box; background: #111; font-family: sans-serif;  accent-color:dimgrey; color: lightgrey}
 body {margin: 0px}
 select {background: #888}
-button {padding: 0px; border: none; background: none; color: #F88}
+button {padding: 0px; border: none; background: none; font-size: inherit; color: #F88}
 button :hover{filter:hue-rotate(180deg)}
 sidebar {position: absolute; float: left; box-sizing: border-box; width: 20%; height: 100%; border: 3px solid dimgrey; text-align: center}
 .bar {margin: 2%; min-height: 3px; width: 100%; background-color: darkgrey}
