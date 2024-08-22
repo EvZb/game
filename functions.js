@@ -12,6 +12,7 @@ function next($a=_,$b=2) {let $1=document.createElement("script");if($b>1){_=$a}
 function xp($a,$b=0,$c=1) {let $1=aff.indexOf($a);affxp[$1]+=Math.floor($b/afflvl[$1])*$c}//$a=affinity. $b=xp add amount. $c=xp quality.
 function num($a) {let $1=$a;if($1<10&&$1>-10){if($1<0){$1='-0'+Math.abs($1)}else{$1='0'+$1}};return($1)}
 function ptime($a) {let $2=[60,24,28,14];$a.forEach(($b,$c)=>{time[$c]+=$b});$2.forEach(($b,$c)=>{if(time[$c]>=$b){time[$c]-=$b;time[$c+1]+=1}});if(time[3]==0&&time[2]>0){time[3]+=1;time[2]-=1};fun('hour',time[1]+':'+num(time[0]))}
+function ctime($a) {let $1=time[0]/60/24+time[1]/24+time[2]+time[3]*28+time[4]*365;let $2=$a[0]/60/24+$a[1]/24+$a[2]+$a[3]*28+$a[4]*365;if($1>$2){return(true)}else{return(false)}}
 //html functions
 function btn($a,$b) {return('<button onclick="'+$b+'"><big>'+$a+'</big></button>')}
 function col($a,$b) {return("<font color="+$a+">"+$b+"</font>")}
