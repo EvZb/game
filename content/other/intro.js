@@ -24,14 +24,15 @@
         n=`Variant: \${lst('a1',"${$2}","race[0]=race[0][0]+elm('a1').value")}<br><br>\${btn('mystery',"race[0]=race[0][0]+${rng(3)};next()")} | \${btn('next',"next()")}`;break
     case 4://world settings
         tmpn=5
-        let $3=racevm[race[0][0]][race[0][1]];hp[1]*=$3.arr(0);ep[1]*=$3.arr(1);sp[1]*=$3.arr(2);heal();sbu()
+        let $1=[['2!2!2','1!2!3','4!1!1','1!3!2'],['3!1!2','1!2!3','1!3!2','3!2!1'],['2!2!2','1!2!3','3!2!1','1!3!2'],['1!2!3','1!3!2','1!1!4','1!4!1']]
+        let $3=$1[race[0][0]][race[0][1]];hp[1]*=$3.arr(0);ep[1]*=$3.arr(1);sp[1]*=$3.arr(2);heal();sbu()
         t=`Choose the starting world size.<br><br>World size is exponential (A size of 2 is equal to 4 chunks. Each chunk has a major location and a terrain type). A size of 4 is recommended`
         n=`Starting world size: \${lst('cws',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} | Max world size: \${lst('mws',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} (for other worlds)<br><br>\${btn('start',"wsize[0]=1*elm('cws').value;mwsize=1*elm('mws').value;next()")}`;break
     case 5://start
         tmpn=7
         pos=[rng(wsize[0]-1),rng(wsize[0]-1),rng(7)]
         t=`You can now enter the world.`
-        n=`\${btn('enter',"tmpn=50;tmp2='in';wname[0]=window['namegen'+namegennum]();genchunks();chunk[loc()]=chunk[loc()].arr(2,'portal');saving='T';next('other/explore')")}`;break
+        n=`\${btn('enter',"tmpn=50;tmpa=['in'];wname[0]=window['namegen'+namegennum]();genchunks();chunk[loc()]=chunk[loc()].arr(2,'portal');saving='T';next('other/explore')")}`;break
     }; if(tmpn>1){n+=`<br><br>\${btn('back',"tmpn-=2;next()")}`}
     end()
 })()

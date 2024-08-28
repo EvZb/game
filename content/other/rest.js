@@ -1,13 +1,13 @@
-(function () {let $1=[tmp.arr(0),tmp.arr(1),tmp.arr(2),tmp.arr(3),1,'']//rest type ! data ! next ! tmp
-    if($1[0]=='faint'){
-        heal(10*$1[1],1);ptime([0,1*$1[1]])
+(function () {//tmpa=[rest type,next,tmp,tmpn] | tmpn=hours | tmpan=[total hours] (no reset)
+    if(tmpa[0]=='faint'){
+        heal(10*tmpn,1);ptime([0,tmpn])
         t=`You are unconscious.`
-        n=`\${btn('awaken',"tmp='${$1[3]}';next('${$1[2]}')")}`}
+        n=`\${btn('awaken',"tmpr('${tmpa[2]}',${tmpa[3]});next('${tmpa[1]}')")}`}
     else{
-        if($1[0]=='inn'){$1[4]=2;$1[5]=`tmp2='${$1[1]}';`}
-        t=`You are resting. You have rested for ${$1[1]} hours.`
-        n=`\${btn('rest',"ptime([0,1*elm('slst').value]);heal(${$1[4]}0*elm('slst').value);tmp=tmp.arr(1,${$1[1]}+(1*elm('slst').value));next()")} for \${lst('slst',"1:1,2:2,3:3,4:4,6:6,8:8,10:10")} hours `
-        n+=`| \${btn('done',"${$1[5]}tmp='${$1[3]}';next('${$1[2]}')")}`}
+        if(tmpn>0){heal(20*tmpn);ptime([0,tmpn]);tmpan[0]+=tmpn;tmpn=0}
+        t=`You are resting. You have rested for ${tmpan[0]} hours.`
+        n=`\${btn('rest',";tmpn=Number(elm('slst').value);next()")} for \${lst('slst',"1:1,2:2,3:3,4:4,6:6,8:8,10:10")} hours `
+        n+=`| \${btn('done',"tmpr('${tmpa[2]}',${tmpa[3]},x);next('${tmpa[1]}')")}`}
     sbu()
     end()
 })()

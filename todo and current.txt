@@ -15,3 +15,6 @@ TODO (NO PARTICULAR ORDER / SUBJECT TO CHANGE):
 4. add settings (low prio)
 5. add npc generation and interactions (after content)
 6. verify function functionality
+
+BUGS:
+-guest room says 100 hours of rest after entering fort

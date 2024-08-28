@@ -1,13 +1,13 @@
-(function () {
+(function () {//tmpa=[tmp,tmpn] | tmpn | tmp
     //data: [graves explored] [graves total] [chapel searches] [chapel items] [diety]
     switch(tmpn){
         case 0://entrance
-            if(sp[0]<1){
-                t="There is a cemetery ahead of you, but you are to weak to enter it."
-                n=`\${btn("leave","tmp=x;tmpn=0;next(w+'major/'+chunk[loc()].arr(1))")}`}
+            if(sp[0]<3){
+                t="There is a cemetery ahead of you, but you are too weak to enter it."
+                n=`\${btn("leave","tmpn=9;next()")}`}
             else{
-                t=`You enter the cemetery. There is a chapel ahead and some graves nearby.`;
-                n=`\${btn("to chapel","tmpn=1;next()")} | \${btn("to graves","tmpn=2;next()")} | \${btn("leave","next(w+'major/'+chunk[loc()].arr(1))")}`}
+                t=`You enter a cemetery. There is a chapel ahead and some graves nearby.`;
+                n=`\${btn("to chapel","tmpn=1;next()")} | \${btn("to graves","tmpn=2;next()")}<br><br>\${btn("leave","tmpn=9;next()")}`}
             break;
         case 1://inside chapel
             t=`You are in the chapel`;
@@ -53,9 +53,13 @@
                 n=`\${btn("walk away","tmpn=2";next())}`} 
             sbu("sp")
             break;
-          
-        }      
+        case 9://leave
+            if(tmpan[1]==0){tmpa=['out']}else{tmpa=['in']};tmp=x
+            t=`You find your way back to the path.`
+            n=`\${btn('next',"tmpn=tmpan[0];tmpan=[0];next('other/explore')")}`
+        }
+    if(tmpn!=9){
     tmpn=[7,0,0,1,1,2,5][tmpn]
-    if(tmpn<7){n+=` | ${btn("back","tmpn="+tmpn+";next()")}`}
+    if(tmpn<7){n+=` | ${btn("back","tmpn="+tmpn+";next()")}`}}
     end()
 })()

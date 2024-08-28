@@ -1,9 +1,33 @@
-(function () {//tmpn is reserved
-    if(tmp==x){
-        t=`You decide to explore the area.`
-        n=`\${btn("explore","tmp=${rng(999)};next()")} | \${btn("back","tmp=x;tmp2='${['in','out'][rng(1)]}';next('other/explore')")}`}
-    else if(tmp<1000){
-        t=`You find nothing`
-        n=`\${btn("explore","tmp=${rng(999)};next()")} | \${btn("back","tmp=x;tmp2='${['in','out'][rng(1)]}';next('other/explore')")}`}
+(function () {//tmpan is reserved
+    switch(tmp){
+        case x:
+            if(tmpan[1]==0){tmpa=['out']}else{tmpa=['in']}
+            tmpn=tmpan[0];tmpan=[0]
+            t=`You return to the path.`
+            n=`\${btn('next',"next('other/explore')")}`;break
+        case '0':
+            t=`You find nothing.`
+            n=`\${btn('next',"tmp=x;next()")}`;break
+        case '1':
+            t=`You find nothing.`
+            n=`\${btn('next',"tmp=x;next()")}`;break
+        case '2':
+            t=`You find nothing.`
+            n=`\${btn('next',"tmp=x;next()")}`;break
+        case '3':
+            t=`You find nothing.`
+            n=`\${btn('next',"tmp=x;next()")}`;break
+        case '4':
+            t=`You find nothing.`
+            n=`\${btn('next',"tmp=x;next()")}`;break
+        case '5':
+            t=`You find nothing.`
+            n=`\${btn('next',"tmp=x;next()")}`;break
+        case '6':
+            t=`You find nothing.`
+            n=`\${btn('next',"tmp=x;next()")}`;break
+        case '7':
+            t=`You find nothing.`
+            n=`\${btn('next',"tmp=x;next()")}`;break}
     end()
 })()
