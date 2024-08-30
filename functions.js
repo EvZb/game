@@ -23,7 +23,7 @@ function lst($a,$b,$c) {let $0='';let $2=$b.split(',');let $3=($c)=>{let $4=$2[$
 function ccolor($a,$b) {let $1=$img.slice(3,7);let $2=$img.slice(7,11);function $F($c,$d,$e) {elm("c"+(2+Number($d))+"img").style.filter="hue-rotate("+(36*$1[$d])+"deg) brightness("+(1-(0.2*$e))+")"};if($a==undefined){($1).forEach($F)}else{if($b==0){$2[$a]=($2[$a]+1)%5}else{$1[$a]=($1[$a]+1)%10};$F(0,$a,$2[$a]);$img=$img.slice(0,3).concat($1,$2).map(Number)}}
 //script functions
 function data($a,$b){if($b==undefined){return(chunkd[loc()].arr($a).split('.'))}else{chunkd[loc()]=chunkd[loc()].arr($a,$b.join('.'))}}//$a is the chunk data selector (0-2) | $b saves array data to chunk data
-function tmpr($a=x,$b=0,$c=x,$d='0') {tmp=$a;$tmpn=Number($b);tmpa=$c.split(',');tmpan=$d.split(',').map(Number)}
+function tmpr($a=x,$b=0,$c=x,$d='0') {tmp=$a;tmpn=Number($b);tmpa=$c.split(',');tmpan=$d.split(',').map(Number)}
 function cycle($a,$b) {if($a==1){return(0)}else if($b<0){return($a+($b%-$a))}else{return($b%$a)}}//Get overflow number ex: cycle(5,2)=2 and cycle(5,7)=2
 function date() {return(Date().slice(4,-33))}
 function iuse($a) {let $1=arr('item',$a);let $2=$1[5].split('X');switch($1[2]){case 0:equip($a,$1,$2);break;case 1:if($2[0]){eval($2[1])};break;case 2:$2.forEach(($c,$d)=>{if($d%2==0){window[$c]=$b*$2[1+$d]}});$1[3]-=1;break;case 4:eval($2[0]);$1[3]-=1;break;};if($1[3]<1){rem('item',$a)}}//$a=item number, $b=modifier (-1 for dequip)
@@ -31,7 +31,7 @@ function equip($a,$b,$c) {let $1=eqp.indexOf($b[0]);let $2=($d,$e)=>{if($e%2==0)
 function allyid() {return(psn.indexOf(ally))}
 function arr($a,$b){let $1=[];window[$a].forEach(($c)=>{$1.push(window[$c][$b])});return($1)}//returns the values of an array group (for item or person)
 function rem($a,$b){window[$a].forEach(($c)=>{window[$c].splice($b,1)})}
-function add($a,$b){if($a=='item'&&itm.indexOf($b[0])>0){itma[itm.indexOf($b[0])]+=$b[1]}else{window[$a].forEach(($c,$d)=>{window[$c].push($b[$d])})}}
+function add($a,$b){if($a=='item'&&itm.indexOf($b[0])>0){itma[itm.indexOf($b[0])]+=$b[1]}else if($a=='material'&&mat.indexOf($b[0])>0){mata[mat.indexOf($b[0])]+=$b[1]}else{window[$a].forEach(($c,$d)=>{window[$c].push($b[$d])})}}
 function namegen1(){let $1=rng(2,1);let $2=rng(2,1);let $3=nvow1.length;$4=ncon1.length;let $5='';let $6='';while($1>0){$5+=ncon1[rng($4-1)]+nvow1[rng($3-1)];$1-=1};$5=$5[0].toUpperCase()+$5.slice(1);while($2>0){$6+=ncon1[rng($4-1)]+nvow1[rng($3-1)];$2-=1};$6=$6[0].toUpperCase()+$6.slice(1);return($5+' '+$6)}
 function namegen2(){let $1=rng(3,1);let $2=rng(3,1);let $3=ncon2.length;let $4='';let $5='';while($1>0){$4+=ncon2[rng($3-1)];$1-=1};while($2>0){$5+=ncon2[rng($3-1)];$2-=1};$4=$4[0].toUpperCase()+$4.slice(1);$5=$5[0].toUpperCase()+$5.slice(1);return($4+' '+$5)}
 function namegen3(){let $1=rng(4,2);let $2=rng(4,2);let $3=ncon3.length;let $4='';let $5='';while($1>0){$4+=ncon3[rng($3-1)];$1-=1};while($2>0){$5+=ncon3[rng($3-1)];$2-=1};$4=$4[0].toUpperCase()+$4.slice(1);$5=$5[0].toUpperCase()+$5.slice(1);return($4+' '+$5)}

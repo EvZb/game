@@ -34,7 +34,7 @@ eqp=[x,x,x]//str (slots)
 //arrays materials
 mat=[x]//str material name
 mata=[0]//int material amount
-matt=[0]//int material affinity type (5-8 | physical,energy,spiritual,faith)
+matt=[0]//int material affinity type (5-7 | physical,energy,spiritual)
 matf=[0]//int material form (0=none,1=ingot,ect)
 matc=[0]//int material crafting usage (0=Cooking,1=Smithing,etc)
 matr=[8]//int rarity (0=rare upto 8=notrare or 9=black)

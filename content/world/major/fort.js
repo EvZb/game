@@ -13,7 +13,7 @@
             n=`\${btn('find a room',"tmp='rest';next()")} | \${btn('back',"tmp=x;next()")}`;break;
         case 'rest':
             t=`You are in a room. You can rest here.`
-            n=`\${btn('rest',"tmpa=['inn',w+'major/fort','rest','0'];next('other/rest')")} | \${btn('back',"tmpr();next()")}`;break
+            n=`\${btn('rest',"tmpa=['inn',w+'major/fort','rest','0'];next('other/rest')")} | \${btn('back',"tmpr('room');next()")}`;break
     }
     end()
 })()
