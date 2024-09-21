@@ -1,38 +1,42 @@
 (function () {
-    //tmp=combat state
-    //tmpa=[loot type.data, data, atks.defs.stats max, type, atk name, player atk, tmp, tmpn]
+    //tmp=combat state | no reset
+    //tmpa=[loot type, data, atks.defs.stats max, enemy type, atk name, player atk, tmpn, tmpa, tmpan, next]
     //tmpan=[lvl, count, hp, ep, sp]
-    if(tmp=='attack'||tmp=='alert'||tmp=='stealth'){
+    if(tmp=='attack'||tmp=='alert'||tmp=='stealth'){combat='T'
         if(tmp=='stealth'&&tmpa[5]!=x){tmp='alert'}
-        let $2;if($1[9]!=x){$2=`${aff[$1[9][0]]}:${$1[9][0]}`}else{$2='Nothing:none'};if($1[9]!=0){$2+=','+aff[tech[0]]+':0'}
-        t=`Enemies: ${$1[6]} ${$1[7]}<br><br>`
+        let $2;if(tmpa[5]!=x){$2=`${aff[tmpa[5]]}:${tmpa[5]}`}else{$2='Nothing:none'};if(tmpa[5]!=0){$2+=','+aff[tech[0]]+':0'}
+        t=`Enemies: ${tmpan[1]} ${tmpa[3]}<br><br>`
         if(tmp!='stealth'){
-            let $1=tmp[2].split('.')
-            if(tmp=='alert'){t+=`The enemy is preparing to attack.`;tmp='attack'}
-            if(tmpa[5]!=x){t+=` You attack the enemy.`;xp(aff[tech[tmpa[5]]],1,tmpan[0])
-                if(tmpa[5]>2){[0,1,2].forEach(($a)=>{tmpan[2+$a]-=Math.max(1,afflvl[tech[tmpa[5]]]+atk[$a]-$1[3+$a])})}
-                else{tmpan[Number(tmpa[5])+2]-=Math.max(1,afflvl[tech[tmpa[5]]]+atk[tmpa[5]]-$1[3+Number(tmpa[5])])}
-                if(tmpan[2]<1||tmpan[3]<1||tmpan[4]<1){t+=` You defeat the enemy.`;tmpan[1]-=1;if(tmpan[1]<1){tmp='win'}else{tmpan[2]=$1[6];tmpan[3]=$1[7];tmpan[4]=$1[8]}}
-            if(tmp=='attack'){t+=` The enemy attacks you.`
-                hp[0]-=Math.max(0,$1[0]-def[0]);ep[0]-=Math.max(0,$1[1]-def[1]);sp[0]-=Math.max(0,$1[2]-def[2])
-                if(hp[0]<1||ep[0]<1||sp[0]<1){tmp='lose'};sbu()}}}
+            let $1=tmpa[2].split('.')
+            let $3=Math.floor(lvl[0]/(tmpan[0]+lvl[0])*100)//evasion/accuracy value
+            if(tmpa[5]==x){if(tmp!='alert'){t+=`You don't attack.`}}
+            else{t+=` You attack the ${tmpa[3]}.`;xp(aff[tech[tmpa[5]]],2,tmpan[0])
+                if($3-rng(50)<5){t+=` You fail to hurt the ${tmpa[3]}.`}
+                else{t+=` Your attack hits the scorpion.`
+                    if(tmpa[5]>2){[0,1,2].forEach(($a)=>{tmpan[2+$a]-=Math.max(1,afflvl[tech[tmpa[5]]]+atk[$a]-$1[3+$a])})}
+                    else{tmpan[Number(tmpa[5])+2]-=Math.max(1,afflvl[tech[tmpa[5]]]+atk[tmpa[5]]-$1[3+Number(tmpa[5])])}
+                    if(tmpan[2]<1||tmpan[3]<1||tmpan[4]<1){t+=` You defeat the ${tmpa[3]}.`;tmpan[1]-=1;if(tmpan[1]<1){tmp='win'}else{tmpan[2]=Number($1[6]);tmpan[3]=Number($1[7]);tmpan[4]=Number($1[8])}}}}
+            if(tmp=='alert'){t+=`<br><br>The ${tmpa[3]} is preparing to attack.`;tmp='attack'}
+            else if(tmp=='attack'){t+=`<br><br>The ${tmpa[3]} attacks you.`
+                if($3+rng(50)>95){t+=` The ${tmpa[4]} fails to hurt you.`}
+                else{t+=` The ${tmpa[4]} hits you.`
+                    hp[0]-=Math.max(1,$1[0]-def[0]);ep[0]-=Math.max(1,$1[1]-def[1]);sp[0]-=Math.max(0,$1[2]-def[2])}
+                if(hp[0]<1||ep[0]<1||sp[0]<1){tmp='lose'};sbu()}}
         else{t+=`The enemy hasn't detected you.`}
         if(tech[1]>-1&&tmpa[5]!=1){$2+=','+aff[tech[1]]+':1'}
         if(tech[2]>-1&&tmpa[5]!=2){$2+=','+aff[tech[2]]+':2'}
         if(tech[3]>-1&&tmpa[5]!=3&&tech[7].split(' ')[0]==aff[tech[3]]){$2+=','+aff[tech[3]]+':3'}
         if(tmpa[5]!=x){$2+=',Nothing:none'}
-        n=`Attack using: \${lst("atklst","${$2}")}<br><br>\${btn("next","tmp[5]=elm('atklst').value;next()")}`
-        if(tmp=='win'){n=`next`}}
-    else{
+        n=`Attack using: \${lst("atklst","${$2}")}<br><br>\${btn("next","tmpa[5]=elm('atklst').value;next()")}`}
+    else{heal(0,1);combat='F'
+        xp2(0,5,tmpan[0])
         if(tmp=='win'){
             t=`You have defeated the enemy.`
-            $1[1]=$1[1].split('.')
-            if(tmpa[0]=='item'){add('item',tmpa[1].split(','))}
-            else if(tmpa[0]=='material'){add('material',tmpa[1].split(','))}
-            else if(tmpa[0]=='money'){stat[0]+=Number(tmpa[1])}}
+            if(tmpa[0]=='item'){add('item',tmpa[1].split('.'))}
+            else if(tmpa[0]=='material'){add('material',tmpa[1].split('.'))}
+            else if(tmpa[0]=='money'){money+=Number(tmpa[1])}}
         else{t=`You are too weak to continue.`}
-        tmpr(tmp[6],tmp[7])
-        n=`\${btn('next',"next('${$3[0]}')")}`
+        n=`\${btn('next',"next('${tmpa[9]}')")}`;tmpr(tmp,tmpa[6],tmpa[7],tmpa[8])
     }
     end()
 })()
