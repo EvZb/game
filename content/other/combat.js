@@ -1,12 +1,12 @@
 (function () {
     //tmp=combat state | no reset
     //tmpa=[loot type, data, atks.defs.stats max, enemy type, atk name, player atk, tmpn, tmpa, tmpan, next]
-    //tmpan=[lvl, count, hp, ep, sp]
+    //tmpan=[lvl, count, hp, ep, sp, round]
     if(tmp=='attack'||tmp=='alert'||tmp=='stealth'){combat='T'
         if(tmp=='stealth'&&tmpa[5]!=x){tmp='alert'}
         let $2;if(tmpa[5]!=x){$2=`${aff[tmpa[5]]}:${tmpa[5]}`}else{$2='Nothing:none'};if(tmpa[5]!=0){$2+=','+aff[tech[0]]+':0'}
-        t=`Enemies: ${tmpan[1]} ${tmpa[3]}<br><br>`
-        if(tmp!='stealth'){
+        t=`Enemies: ${tmpan[1]} ${tmpa[3]} | Round: ${tmpan[5]}<br><br>`
+        if(tmp!='stealth'){tmpan[5]+=1
             let $1=tmpa[2].split('.')
             let $3=Math.floor(lvl[0]/(tmpan[0]+lvl[0])*100)//evasion/accuracy value
             if(tmpa[5]==x){if(tmp!='alert'){t+=`You don't attack.`}}
@@ -20,7 +20,7 @@
             else if(tmp=='attack'){t+=`<br><br>The ${tmpa[3]} attacks you.`
                 if($3+rng(50)>95){t+=` The ${tmpa[4]} fails to hurt you.`}
                 else{t+=` The ${tmpa[4]} hits you.`
-                    hp[0]-=Math.max(1,$1[0]-def[0]);ep[0]-=Math.max(1,$1[1]-def[1]);sp[0]-=Math.max(0,$1[2]-def[2])}
+                    hp[0]-=Math.max(0,$1[0]-def[0]);ep[0]-=Math.max(0,$1[1]-def[1]);sp[0]-=Math.max(0,$1[2]-def[2])}
                 if(hp[0]<1||ep[0]<1||sp[0]<1){tmp='lose'};sbu()}}
         else{t+=`The enemy hasn't detected you.`}
         if(tech[1]>-1&&tmpa[5]!=1){$2+=','+aff[tech[1]]+':1'}
@@ -28,7 +28,7 @@
         if(tech[3]>-1&&tmpa[5]!=3&&tech[7].split(' ')[0]==aff[tech[3]]){$2+=','+aff[tech[3]]+':3'}
         if(tmpa[5]!=x){$2+=',Nothing:none'}
         n=`Attack using: \${lst("atklst","${$2}")}<br><br>\${btn("next","tmpa[5]=elm('atklst').value;next()")}`}
-    else{heal(0,1);combat='F'
+    else{combat='F'
         xp2(0,5,tmpan[0])
         if(tmp=='win'){
             t=`You have defeated the enemy.`

@@ -14,7 +14,7 @@
             else{t+=`People walk along the roads; most of them are ${races[$1[5]]}.`};break
         case 'leave':
             t=`There are 8 ways to leave the city.`
-            n=`\${btn('leave',"tmpr(x,10,'out');pos[2]=1*elm('sdir').value;next('other/explore')")} through the \${lst('sdir',"North:0,Northeast:1,East:2,Southeast:3,South:4,Southwest:5,West:6,Northwest:7")} exit | \${btn('back',"tmp=x;next()")}`;break
+            n=`\${btn('leave',"w='world/';tmpr(x,10,'out');pos[2]=1*elm('sdir').value;next('other/explore')")} through the \${lst('sdir',"North:0,Northeast:1,East:2,Southeast:3,South:4,Southwest:5,West:6,Northwest:7")} exit | \${btn('back',"tmp=x;next()")}`;break
         case 'market':
             t=`You are at the market. There are two notable shops.`
             n=``

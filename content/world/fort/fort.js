@@ -7,7 +7,7 @@
             break;
         case 'leave':
             t=`There are 8 ways to leave the fort.`
-            n=`\${btn('leave',"tmpr(x,0,'out');pos[2]=1*elm('sdir').value;next('other/explore')")} through the \${lst('sdir',"North:0,Northeast:1,East:2,Southeast:3,South:4,Southwest:5,West:6,Northwest:7")} exit | \${btn('back',"tmp=x;next()")}`;break;
+            n=`\${btn('leave',"w='world/';tmpr(x,0,'out');pos[2]=1*elm('sdir').value;next('other/explore')")} through the \${lst('sdir',"North:0,Northeast:1,East:2,Southeast:3,South:4,Southwest:5,West:6,Northwest:7")} exit | \${btn('back',"tmp=x;next()")}`;break;
         case 'room':
             t=`You are at the guest building. You can use a room to rest here.`
             n=`\${btn('find a room',"tmp='rest';next()")} | \${btn('back',"tmp=x;next()")}`;break;
