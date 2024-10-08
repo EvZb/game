@@ -1,0 +1,21 @@
+CURRENT:
+
+- working on major area features (city, fort, etc)
+- working on monster generation (will be used for terrain scene)
+- working on crafting and trading
+- working on terrain danger event
+
+KNOWN BUGS:
+
+EXPECTED ISSUES:
+
+- problems with saving and loading (especially after updates)
+- broken/unused functions and variables
+
+TODO / IDEAS (NO PARTICULAR ORDER / SUBJECT TO CHANGE):
+
+- add images and character designer (low prio)
+- add multiple worlds (after content)
+- add more settings (low prio)
+- add npc interaction scene
+-

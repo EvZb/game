@@ -1,6 +1,6 @@
-//restricted characters in save variables [¦,§,°] (used for save data)
+//restricted characters in saved variables [¦,§,°] (used for save data)
 //using strings as arrays split characters [! ~ . ,] (mostly depends on the variable,! is most common) , is reserved in tmp arrays and chunk data
-//every variable defined as an array should only be an array | every array should be either integers (int) or strings (str), but not both
+//every variable defined as an array should only be an array | every array should be integers (int) or strings (str), but not both
 //script variables
 version='0 (DEV)'//str currently does nothing
 t=''//str js convert to html game text (save/load)
@@ -8,7 +8,7 @@ n=''//str js convert to html game navigation (save/load)
 m=0//str keeps track of what menu is open
 u=undefined
 x='none'//used to simplify script | 'none' is used instead of empty strings in variables/arrays because of saving and loading problems
-strv=['tmp','saving','combat','safe','w','_']//variables to initialize and save as strings (tmp is used by scenes, saving is for disabling the save menu, w is for world type in file path _ is the path of the last scene used)
+strv=['tmp','saving','combat','safe','w','_']//variables to initialize and save as strings (tmp is used by scenes, saving is for disabling the save menu, w is for simplifying the file path _ is the path of the last scene used)
 numv=['tmpn','namegennum','fsize','cworldid','mwsize','money']//variables to initialize and save as numbers (tmpn is used by scenes namegennum is the selected name generator, fsize is font size, cworldid is the index of the current world)
 tmpa=[x]//a string array for use across scenes
 tmpan=[0]//a number array for use across scenes
@@ -84,9 +84,9 @@ races=['Demon','Abyss','Human','Spirit']
 racev=[['Demon','Succubus','Zombie','Vampire'],['Abyss','Curse','Mimic','Slime'],['Human','Fox','Dog','Cat'],['Spirit','Ghost','God','Elemental']]
 matform=[x,'ingot','bottle','crystal','bag','chunk','ball','roll']//the type of container for a material
 afftype=[x,'physical attack','energy attack','spiritual attack','faith','physical','energy','spiritual','effect','skill']
-matcraft=['Cooking','Smithing','Formation']//crafting uses for materials
+matcraft=[x,'Smithing','Alchemy','Imbuing']//crafting uses for materials
 terrains=['desert','forest','jungle','mountains','plains','snow']//update this list after adding terrains
-majorfeatures=['city','fort','mine','sect','village']
+majorfeatures=['city','fort','sect','village']
 minorfeatures=['forbidden zone','cave','cemetery','monster den','compound','labyrinth','lake','portal','shelter','shrine']//ruin isn't included in world gen
 direction=['North','Northeast','East','Southeast','South','Southwest','West','Northwest']
 rdirection=[1,1,0,-1,-1,-1,0,1,0,1,1,1,0,-1,-1,-1]//used in loc function

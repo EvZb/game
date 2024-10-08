@@ -5,6 +5,6 @@
             else {$1 += `<div id="slb${$2}" class="sld"><button class="slb" onclick="load(${$2});menu(3)">Load ${$2}</button>${saves[$2]}
             <button class="slb" style="float: right" onclick="saves[${$2}]=0;localStorage.UGS=saves.join();localStorage.removeItem('UG ${$2}');next('menu/savemenu',0)">Delete</button>`};$1+=`</div>`;$2+=1}
         fun("menu",$1+`<br><br><button class="slb" onclick="save('file')">Save File</button><button style="float: right" class="slb" onclick="elm('fileinput').click()">Load File</button>`)}
-    else{fun("menu",`\${col(cc[0],"Saving is disabled")}`)}
+    else{fun("menu",`\${col(cc[0],"Saving is disabled in this scene.")}`)}
     end(0)
 })()

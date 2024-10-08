@@ -13,7 +13,7 @@
         n+=`\${btn('explore',"tmp='explore';next()")}`;break
     case 'walk'://travelling
         if(tmpn>99){let $2=``
-            if(tmpa[0]=='in'){$2=`tmpr()w+='${tmpa[2]}/';next(w+'${tmpa[2]}')`}
+            if(tmpa[0]=='in'){$2=`tmpr();w+='major/${tmpa[2]}/';next(w+'${tmpa[2]}')`}
             else{$2=`tmp=x;tmpn=10;pos[0]=${cycle(wsize,pos[0]+rdirection[pos[2]]%wsize[cworldid])};pos[1]=${cycle(wsize,pos[1]+rdirection[8+pos[2]]%wsize[cworldid])};tmpa=['in',chunk[loc()].arr(0),chunk[loc()].arr(1),tmpa[1],x];next()`}
             t=`The ${tmpa[2]} is in front of you. You are at the ${direction[(pos[2]+4)%8]} side of it.`;n=`\${btn('to ${tmpa[2]}',"${$2}")} | \${btn('back to ${tmpa[1]}',"tmp=x;tmpn=0;tmpa[4]='turn';pos[2]=(pos[2]+4)%8;next()")}`
             if(tmpa[0]=='in'){n+=` | \${btn('walk around',"pos[2]=1*elm('dlst').value;tmpa[3]=chunk[loc('d',pos[2])].arr(0);next()")} to the \${lst('dlst',"${direction[(pos[2]+3)%8]}:${(pos[2]+7)%8},${direction[(pos[2]+5)%8]}:${(pos[2]+1)%8}")} side of the ${tmpa[2]}`}}
