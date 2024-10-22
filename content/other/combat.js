@@ -32,8 +32,8 @@
         xp2(0,5,tmpan[0])
         if(tmp=='win'){
             t=`You have defeated the enemy.`
-            if(tmpa[0]=='item'){add('item',tmpa[1].split('.'))}
-            else if(tmpa[0]=='material'){add('material',tmpa[1].split('.'))}
+            if(tmpa[0]=='item'){additem('itm',tmpa[1].split('.'))}
+            else if(tmpa[0]=='material'){additem('mat',tmpa[1].split('.'))}
             else if(tmpa[0]=='money'){money+=Number(tmpa[1])}}
         else{t=`You are too weak to continue.`}
         n=`\${btn('next',"next('${tmpa[9]}')")}`;tmpr(tmp,tmpa[6],tmpa[7],tmpa[8])
