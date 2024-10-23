@@ -5,29 +5,28 @@
             tmpn=tmpan[0];tmpan=[0]
             t=`You return to the path.`
             n=`\${btn('next',"next('other/explore')")}`;break
+        case 'win':t=`You take loot the corpse before leaving.`;n=`\${btn('leave',"tmp=x;next()")}`;break
+        case 'lose':t=`You escape and take some time to recover.`;ptime([45]);heal(0,1);n=`\${btn('leave',"tmp=x;next()")}`;break
         case '0':
-            t=`You find ${['nothing','some old monster tracks','an empty cloth bag','blood stains in the sand'][rng(3)]}.`
+            t=`You find ${['nothing','some old monster tracks in the sand','a broken pot','a dead bush','blood stains in the sand'][rng(4)]}.`
             n=`\${btn('next',"tmp=x;next()")}`;break
-        case '1'://monster hunting/attack
-            let $1=[rng(2),rng(2)];let $2=$1[0]+1+',1,'
-            $1.push(['Small '+['Sand Worm,bite','Scorpion,stab','Dust Devil,dust'][$1[1]],['Black','Green','Red'][$1[1]]+' Scorpion,stab',['Sand Worm,bite','Giant Scorpion,stab','Dust Devil,dust wind'][$1[1]]][$1[0]])
-            $1.push($1[2].split(',')[0])
-            $1[2]=[['material,Worm skin.1.5.7.1.6,2.0.0.0.0.1.8.6.4','material,Scorpion meat.1.6.5.0.7,1.0.0.0.0.0.10.8.8','money,15,0.2.0.2.0.0.6.10.6'][$1[1]],['material,Scorpion shell.1.5.5.1.6,3.0.0.2.1.0.10.8.8','material,Scorpion poison.1.6.2.0.6,1.2.0.1.0.0.8.12.8','material,Scorpion soul.1.7.3.0.6,0.1.2.0.1.1.10.10.10'][$1[1]],['material,Worm teeth.1.6.4.1.5,5.0.0.1.1.1.16.14.10','material,Giant Scorpion stinger.1.5.0.1.5,4.2.0.2.2.1.12.12.12','material,Dust Devil soul.1.7.3.1.5,0.3.3.4.0.0.10.14.16'][$1[1]]][$1[0]]+','+$1[2]
-            $1[2]+=',none,'+tmpan[1]+',none,'+tmpan[0]+',world/terrain/desert'
-            $2+=$1[2].split(',')[2].split('.').slice(6).join()+',0'
+        case '1':
+            let $1=monster(['Ooze','Snake','Winder','Worm','Scorpion','Yokai'][rng(5)],rng(2,1),[x,'Fire','Sand','Red','Yellow','Dust'][rng(5)])
+            tmpa=[$1[3],$1[4],$1[1],$1[0],$1[5],x,'0',x,tmpan.join(),'world/terrain/snow']
+            tmpan=[$1[6],1,...$1[2].split(',').map(Number),0]
+            $1[0]='Level '+$1[6]+' '+$1[0]
             switch(rng(2)){
-                case 0:t=`You hear a ${$1[3]} nearby.`;n=`\${btn('hunt',"tmpr('stealth',0,'${$1[2]}','${$2}');next('other/combat')")} | \${btn('leave',"tmp=x;next()")}`;break
-                case 1:t=`You find the fresh tracks of a ${$1[3]}.`;n=`\${btn('follow',"tmpr('stealth',0,'${$1[2]}','${$2}');next('other/combat')")} | \${btn('leave',"tmp=x;next()")}`;break
-                case 2:t=`You hear a noise behind you. It's a ${$1[3]}!`;n=`\${btn('fight',"tmpr('alert',0,'${$1[2]}','${$2}');next('other/combat')")} | \${btn('run',"ep[0]-=1;sbu('ep');tmp=x;next()")}`;break};break
+                case 0:t=`You hear a ${$1[0]} nearby.`;n=`\${btn('hunt',"tmp='stealth';next('other/combat')")} | \${btn('leave',"tmpr(x,0,x,tmpa[8]);next()")}`;break
+                case 1:t=`You find the fresh tracks of a ${$1[0]}.`;n=`\${btn('follow',"tmp='stealth';next('other/combat')")} | \${btn('leave',"tmp=x;next()")}`;break
+                case 2:t=`You hear a noise behind you. It's a ${$1[0]}!`;n=`\${btn('fight',"tmp='alert';next('other/combat')")} | \${btn('run',"ep[0]-=1;sbu('ep');tmp=x;next()")}`;break};break
         case '2'://camp/traders
-            if(tmpn==0){t=`You encounter a group of hunters. They will give you a good price if you have something they are looking for.`;n=`\${btn('trade',"tmpn=1;next()")} | \${btn('leave',"tmp=x;next()")}`}
-            else{t=`You talk to one of the hunters. ${['He','She'][rng(1)]} explains what the values are for your materials.`
+            if(tmpn==0){t=`You encounter a group of adventurers. They will give you a good price for your materials.`;n=`\${btn('trade',"tmpn=1;next()")} | \${btn('leave',"tmp=x;next()")}`}
+            else{t=`You talk to one of the adventurers. ${['He','She'][rng(1)]} explains the value of your materials.`
                 let $0='Nothing:-1.0'
-                let $1=['Worm skin','Scorpion meat','Scorpion shell','Scorpion poison','Scorpion soul','Worm teeth','Giant Scorpion stinger','Dust Devil soul','Dry Water','Dust Wood','Magnetic Sand','Giant Worm teeth']
-                $1.forEach(($a,$b)=>{let $3=mat.indexOf($a);let $4=(11-matr[$3])*5;if($3!=-1){$0+=','+$a+' ('+$4+'):'+$3+'!'+$4}})
-                n=`\${btn('leave',"tmp=x;next()")}<br><br>\${lst('sell',"${$0}")} \${btn('sell',"rem('material',elm('sell').value.arr(0));money+=Number(elm('sell').value.arr(1));next()")}`};break
+                mat.forEach(($a,$b)=>{let $1=(11-matr[$b])*5;$0+=','+$a+' ('+$1+'):'+$a+'!'+$1})
+                n=`\${btn('leave',"tmp=x;next()")}<br><br>\${lst('sell',"${$0}")} \${btn('sell',"remitem('mat',elm('sell',1).value.arr(0));money+=Number(elm('sell').value.arr(1));next()")}`};break
         case '3'://find material
-            if(tmpn==0){tmpa=[['Magnetic Sand.1.6.4.1.7','Dry Water.1.6.2.0.7','Dust Wood.1.7.5.1.7'][rng(2)]]
+            if(tmpn==0){tmpa=[['Magnetic Sand.1.6.4.1.7','Dry Water.1.6.2.3.7','Dust Wood.1.7.5.1.7'][rng(2)]]
                 t=`You find some ${tmpa[0].split('.')[0]}.`
                 n=`\${btn('take',"tmpn=1;next()")} | \${btn('leave',"tmp=x;next()")}`}
             else{let $1=data(0);let $2=$1[1].split('.');$2[pos[2]]-=1;$1[1]=$2.join('.');data(0,$1);add('material',tmpa[0].split('.'))
