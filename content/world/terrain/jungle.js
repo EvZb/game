@@ -22,14 +22,14 @@
         case '2'://camp/traders
             if(tmpn==0){t=`You encounter a group of adventurers. They will give you a good price for your materials.`;n=`\${btn('trade',"tmpn=1;next()")} | \${btn('leave',"tmp=x;next()")}`}
             else{t=`You talk to one of the adventurers. ${['He','She'][rng(1)]} explains the value of your materials.`
-                let $0='Nothing:-1.0'
-                mat.forEach(($a,$b)=>{let $1=(11-matr[$b])*5;$0+=','+$a+' ('+$1+'):'+$a+'!'+$1})
+                let $0='Nothing:-1!0'
+                mat.slice(1).forEach(($a,$b)=>{let $1=(11-matr[1+$b])*5;$0+=','+$a+' ('+$1+'):'+$a+'!'+$1})
                 n=`\${btn('leave',"tmp=x;next()")}<br><br>\${lst('sell',"${$0}")} \${btn('sell',"remitem('mat',elm('sell',1).value.arr(0));money+=Number(elm('sell').value.arr(1));next()")}`};break
         case '3'://find material
             if(tmpn==0){tmpa=[['Poison Mushrooms.1.6.4.2.7','Illusion Flowers.1.7.0.3.7','Grow Berries.1.5.4.2.7'][rng(2)]]
                 t=`You find some ${tmpa[0].split('.')[0]}.`
                 n=`\${btn('take',"tmpn=1;next()")} | \${btn('leave',"tmp=x;next()")}`}
-            else{let $1=data(0);let $2=$1[1].split('.');$2[pos[2]]-=1;$1[1]=$2.join('.');data(0,$1);add('material',tmpa[0].split('.'))
+            else{let $1=data(0);let $2=$1[1].split('.');$2[pos[2]]-=1;$1[1]=$2.join('.');data(0,$1);additem('mat',tmpa[0].split('.'))
                 t=`You take the ${tmpa[0].split('.')[0]} before leaving`;n=`\${btn('next',"tmp=x;next()")}`};break
         case '4'://find item/chest
             switch(tmpn){
@@ -42,7 +42,7 @@
                     else{n=`\${btn('take',"tmpn=2;next()")} | `};n+=`\${btn('leave',"tmp=x;next()")}`;break
                 case 2:let $1=data(0);let $2=$1[1].split('.');$2[pos[2]]-=1;$1[1]=$2.join('.');data(0,$1)
                     if(tmpa[0]=='Corrupted Chest'){rem('item','Corrupted Key');t=`You unlock the chest; it holds a book from a series called "Plantel Illusions".`;add('item',['Illusion Mist Book',1,7,6,'7'])}
-                    else{add('item',tmpa[1]);t=`You take the ${tmpa[0]}.`}
+                    else{additem('itm',tmpa[1]);t=`You take the ${tmpa[0]}.`}
                     n=`\${btn('leave',"tmp=x;next()")}`;break};break
         case '5'://dangerous event
                 tmp=x;n=`\${btn('back',"next()")}`;t=`You find nothing.`

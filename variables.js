@@ -5,7 +5,7 @@
 version='0 (DEV)'//str currently does nothing
 t=''//str js convert to html game text (save/load)
 n=''//str js convert to html game navigation (save/load)
-m=0//str keeps track of what menu is open
+sidemenu=0//str keeps track of what menu is open
 u=undefined
 x='none'//used to simplify script | 'none' is used instead of empty strings in variables/arrays because of saving and loading problems
 strv=['tmp','saving','combat','safe','w','_']//variables to initialize and save as strings (tmp is used by scenes, saving is for disabling the save menu, w is for simplifying the file path _ is the path of the last scene used)
