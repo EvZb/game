@@ -1,11 +1,14 @@
+Array.prototype.forEach=function(a){for(let i=0;i!==this.length;i++){a(this[i],i)}}
 String.prototype.arr=function(index,replace,divider='!') {let a=this.split(divider);if(replace==u){return(a[index])}else{a[index]=replace;return(a.join(divider))}}//Treat a string as an array with dividers. ex: '123!456' is ['123','456']
 Array.prototype.cyc=function(index){if(index<0){return(this.toReversed()[Math.abs(index)%this.length])};return(this[index%this.length])}//Get the overflow index value. ex: [1,2,3].cyc(1)==2 and [1,2,3].cyc(4)==2
 Array.prototype.list=function(item,array,deep){let a=[];if(deep==u){this.forEach((b,c)=>{if(b==item){a.push(c)}})}else{this.forEach((b,c)=>{if(b.includes(item)){a.push(c)}})};if(array==u){return(a)}else{return(a.map(b=>array[b]))}}//returns an array of indexes that equal item | returns an array from indexes of array where item matches the origin array | deep mode searches strings
+
 //html functions
 function btn($a,$b) {return('<button onclick="'+$b+'"><big>'+$a+'</big></button>')}
 function col($a,$b) {return("<font color="+$a+">"+$b+"</font>")}
 function fun($a,$b) {elm($a).innerHTML=eval('`'+$b+'`')}
 function lst($a,$b,$c) {let $0='';let $2=$b.split(',');let $3=($c)=>{let $4=$2[$c].split(':');$1+=('<option value="'+$4[1]+'">'+$4[0]+'</option>')};if($c!=u){$0=' onchange="'+$c+'"'};let $1='<select id="'+$a+'"'+$0+'>';Object.keys($2).forEach($3);$1+='</select>';return($1)}
+
 //data functions (updates saved variables)
 function add($a,$b){window[$a].forEach(($c,$d)=>{if(typeof(window[$c][0])=='string'){window[$c].push($b[$d])}else{window[$c].push(Number($b[$d]))}})}
 function additem($a,$b){let $1=window[$a].indexOf($b[0]);if($1==-1){if($a=='itm'){add('item',$b)}else{add('material',$b)}}else{window[$a+'a'][$1]+=Number($b[1])}}//$a=itm/mat | $b=[data]
@@ -25,6 +28,7 @@ function tag($a,$b,$c) {let $1=pid.indexOf($a);let $2=ptag[$1].split('!');let $3
 function tmpr($a=x,$b=0,$c=x,$d='0') {tmp=$a;tmpn=Number($b);tmpa=$c.split(',');tmpan=$d.split(',').map(Number)}//used to reset/redefine tmp variables
 function xp($a,$b=0,$c=1) {let $1=aff.indexOf($a);affxp[$1]+=Math.floor($b/(Math.max(afflvl[$1]-(8-affr[$1]),1)))*$c;if(affxp[$1]>99){affxp[$1]-=100;if(affr!=9){afflvl[$1]+=1}}}//$a=affinity. $b=xp add amount. $c=xp quality.
 function xp2($a,$b=0,$c=1) {let $1=pid.indexOf($a);pxp[$1]+=Math.floor($b/lvl[$1])*$c;if(pxp[$1]>99){pxp[$1]-=100;lvl[$1]+=1}}//xp for characters
+
 //script functions
 function arr($a,$b){let $1=[];window[$a].forEach(($c)=>{$1.push(window[$c][$b])});return($1)}//$a=category $b=index | returns the values from an array group (ex: item or person)
 function ctime($a) {let $1=time[0]/60/24+time[1]/24+time[2]+time[3]*28+time[4]*365;let $2=$a[0]/60/24+$a[1]/24+$a[2]+$a[3]*28+$a[4]*365;if($1>$2){return(true)}else{return(false)}}//compares current time with input time to determine whether it has passed input time
@@ -32,6 +36,7 @@ function cycle($a,$b) {if($a==1){return(0)}else if($b<0){return($a+($b%-$a))}els
 function date() {return(Date().slice(4,-33))}//used for save info
 function elm($a){return(document.getElementById($a))}
 function end($a=2) {elm("script"+$a).remove();if($a==2){fun('txt',t);fun('nav',n)}}
+function ifin($a,$b,$c=1){let $1=0;$a.forEach(($d)=>{if($b.includes($d)){$1++}});return($1>=$c)}//checks if $b includes items from $a | $c is the amount that need to match
 function loc($a=0,$b=0) {let $1=wsize[cworldid];let $2=[$a,$b];if($a=='d'){$2[1]=$b;$2[0]=rdirection[$2[1]];$2[1]=rdirection[8+Number($2[1])]};return((cycle($1,pos[0]+$2[0])*$1)+cycle($1,pos[1]+$2[1]))}//returns the chunk index for the relative pos (or direction if loc('d',direction/pos[2]))
 function menu($a) {let $1=['character','items','savemenu','settings','cheats'];if($a==sidemenu){elm('infodis').style.display=x;sidemenu=0}else{next("menu/"+$1[$a-1],0);elm('infodis').style.display="block";sidemenu=$a}}
 function monster($a,$b=0,$c) {let $1=monsters.indexOf($a);let $2=[$b,0];let $3=monstervariants.indexOf($c);let $4=['material',x,x];if($1==-1){$1=rng(monsters.length-1)};if($2[0]<1){$2[0]=rng(8,1)};$2[1]=Math.max(0,9-$2[0]);if($3==-1){$3=rng(monstervariants.length-1)};$4[1]=monsterloot[$1];$1=[monsters[$1],monsterstats[$1].split('.').map(Number),monstergrowth[$1].split('.').map(Number),monsterattack[$1]];$3=[monstervariantbonus[$3],monstervariantloot[$3],monstervariantlootcraft[$3],monstervariants[$3]];if($3[1]!=x){$4[2]=$1[0]+' '+$3[1]+'.'+($3[0]%3+5)+'.0.'+$3[2]};if($3[3]!=x){$1[0]=$3[3]+' '+$1[0]};$4[1]=$4[rng(1,1)];if($4[1]==x){$4=['money',''+(10*$2[0])]}else{$4[1]=$4[1].split('.');$4[1]=[lootlevels[$2[1]]+' '+$4[1][0],1,$4[1][1],$4[1][2],$4[1][3],$2[1]].join('.')};$1[1]=$1[1].map((a,b)=>a+($1[2][b]*$2[0]));$1[1][$3[0]]+=1;$1[1][6+($3[0]%3)]+=$2[0];return([$1[0],$1[1].join('.'),$1[1].slice(-3).join(','),$4[0],$4[1],$1[3],$2[0]])}//returns monster combat data based on the type ($a) and level ($b) and variant ($c) as well as loot ex: [monster, data, data, loot type, loot, attack name, level]
@@ -40,10 +45,11 @@ function namegen2(){let $1=rng(3,1);let $2=rng(3,1);let $3=ncon2.length;let $4='
 function namegen3(){let $1=rng(4,2);let $2=rng(4,2);let $3=ncon3.length;let $4='';let $5='';while($1>0){$4+=ncon3[rng($3-1)];$1-=1};while($2>0){$5+=ncon3[rng($3-1)];$2-=1};$4=$4[0].toUpperCase()+$4.slice(1);$5=$5[0].toUpperCase()+$5.slice(1);return($4+' '+$5)}
 function num($a) {let $1=$a;if($1<10&&$1>-10){if($1<0){$1='-0'+Math.abs($1)}else{$1='0'+$1}};return($1)}//used in ptime, returns a string that adds a 0 before 1 digit numbers
 function rng($a,$b=0) {return(Math.floor(Math.random()*($a+1))+$b)}
+
 //save/load functions
 function load($a) {sv=localStorage["UG "+$a];varld()}
-function reset($a) {let $1;let $2;if($a=='s'){ss=[];sn=[];$1=($b)=>ss.push(window[$b]);$2=($b)=>sn.push(window[$b])}else{$1=($b,$c)=>window[$b]=ss[$c];$2=($b,$c)=>window[$b]=sn[$c];fun('txt',t);fun('nav',n);sbu();ptime([0])};strv.forEach($1);numv.forEach($2);next("menu/settings",0)}
-function save($a) {varsv();if($a=='file'){elm("fdl").href="data:text/plain,"+encodeURIComponent(sv);elm("fdl").download="UG Save ("+date()+").txt";elm("fdl").click()}else{localStorage["UG "+$a]=sv;saves[$a]=date();localStorage.UGS=saves.join()}}
-function varld() {sv=sv.split('¦');sv[0]=sv[0].split('§');arrn.forEach(($a,$b)=>{window[arrn[$b]]=sv[0][$b].split('°').map(Number)});sv[1]=sv[1].split('§');arrs.forEach(($a,$b)=>{window[arrs[$b]]=sv[1][$b].split('°')});t=sv[2];n=sv[3];reset()}
-function varsv() {sv=[[],[],[],[],'',''];reset('s');arrn.forEach(($a,$b)=>{sv[0].push(window[arrn[$b]].join('°'))});sv[0]=sv[0].join('§');arrs.forEach(($a,$b)=>{sv[1].push(window[arrs[$b]].join('°'))});sv[1]=sv[1].join('§');sv[2]=t;sv[3]=n;sv=sv.join("¦")}
+function reset($a) {let $1;let $2;if($a==1){ss=[];sn=[];$1=($b)=>ss.push(window[$b]);$2=($b)=>sn.push(window[$b])}else{$1=($b,$c)=>window[$b]=ss[$c];$2=($b,$c)=>window[$b]=sn[$c];fun('txt',t);fun('nav',n);sbu();ptime([0])};strv.forEach($1);numv.forEach($2);next("menu/settings",0)}
+function save($a) {varsv();if($a=='file'){elm("fdl").href="data:text/plain,"+encodeURIComponent(sv);elm("fdl").download=`${savename}(${savenum}) ${date()} <${version}>.save`;elm("fdl").click()}else{localStorage["UG "+$a]=sv;saves[$a]=`${savename} (${savenum}) ${date()} ${col('teal',elm('txt').innerText)}`;localStorage.UGS=saves.join()}}
+function varld() {sv=sv.split('¦');if(sv[4]==version){sv[0]=sv[0].split('§');arrn.forEach(($a,$b)=>{window[arrn[$b]]=sv[0][$b].split('°').map(Number)});sv[1]=sv[1].split('§');arrs.forEach(($a,$b)=>{window[arrs[$b]]=sv[1][$b].split('°')});t=sv[2];n=sv[3];reset()}else{next('other/saveconversion',1)}}
+function varsv() {savenum+=1;sv=[[],[],'','',version];reset(1);arrn.forEach(($a,$b)=>{sv[0].push(window[arrn[$b]].join('°'))});sv[0]=sv[0].join('§');arrs.forEach(($a,$b)=>{sv[1].push(window[arrs[$b]].join('°'))});sv[1]=sv[1].join('§');sv[2]=t;sv[3]=n;sv=sv.join("¦")}
 async function loadfile($a) {sv=await $a.text();varld()}

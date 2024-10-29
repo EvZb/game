@@ -3,15 +3,15 @@
     case 0://intro
         saving="T"
         tmpn=1;
-        t=`Welcome to \${col('red','UNNAMED GAME')+' '+col('lightyellow','The general gameplay is still being developed.')} The game uses inspirations from many fantasy settings; some words may not match your preconception.<br><br>Navigate the game using the button (colored text) below.`
-        n=`\${btn('next',"next()")} (The next part is character creation; saving and loading will be disabled.)`
+        t=`Welcome to \${col('red','UNNAMED GAME')+' '+col('lightyellow','The general gameplay is still being developed.')} The game uses inspirations from many fantasy settings; some words may not match your preconception.<br><br>Navigate the game using the buttons (colored text) below.`
+        n=`save name: <textarea id="stext" style="resize:none" cols=32 rows=1 maxlength=32>save</textarea> (a save name is required)<br><br> \${btn('next',"if(elm('stext').value!=''){savename=elm('stext').value;next()}")}`
         if(localStorage.UGS==undefined){localStorage['UGS']=saves.join()};break
     case 1://player name
         saving="F"
         tmpn=2;
         t=`Name yourself. You can randomize it with a generator. NPC names will use the selected generator.`
-        n=`Name generator: \${lst('ngen','1:1,2:2,3:3',"namegennum=elm('ngen').value")} | \${btn('randomize',"psn[0]=window['namegen'+namegennum]();elm('itext').value=psn[0]")} <textarea id="itext" style="resize:none" cols=31 rows=1 maxlength=31></textarea>`
-        n+=` \${btn('mystery',"psn[0]=window['namegen'+namegennum]();next()")}<br><br>\${btn('next',"if(elm('itext').value!=''){next()}")}`;break
+        n=`Name generator: \${lst('ngen','1:1,2:2,3:3',"namegennum=elm('ngen').value")} | \${btn('randomize',"psn[0]=window['namegen'+namegennum]();elm('itext').value=psn[0]")} <textarea id="itext" style="resize:none" cols=32 rows=1 maxlength=32></textarea>  (a name is required)<br><br>`
+        n+=` \${btn('mystery',"psn[0]=window['namegen'+namegennum]();next()")}<br><br>\${btn('next',"if(elm('itext').value!=''){psn[0]=elm('itext').value;next()}")}`;break
     case 2://race
         tmpn=3;race[0]='000'
         t=`What are you?<br><br>Demons and humans are enemies. Abyss and Spirits are enemies.`

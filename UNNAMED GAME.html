@@ -1,5 +1,5 @@
-<!doctype html><html lang="en">
-<head><meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0"><title>UNNAMED GAME</title><style id="css"></style><link rel=stylesheet href=css.css>
+<!doctype html><html lang="en" id="html">
+<head><meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0"><title>UNNAMED GAME</title><link rel=stylesheet href=css.css>
 <!--
 Permission is hereby granted to any person obtaining a copy of this software and associated files (the "Software"), the rights to use, modify, and distribute the Software, subject to the following conditions:
 1. Distributed copies and modified copies of the Software must contain this (unmodified) license.
@@ -8,7 +8,7 @@ Permission is hereby granted to any person obtaining a copy of this software and
 4. The creators are not liable for any statements, promises, and implications regarding the Software.
 -->
 </head><body>
-<sidebar id="sidebar"><div id="gametitle">UNNAMED GAME<small> by EvZb</small><small>ඞ</small></div><div id="version">Version: 0 (DEV)</div>
+<sidebar id="sidebar"><div id="gametitle">UNNAMED GAME<small> by EvZb</small><small>ඞ</small></div><div id="version"></div>
 <div id="characterframe"><img id="tail" class="cimg"><img id="back" class="cimg"><img id="eff1" class="cimg"><img id="body" class="cimg"><img id="eff2" class="cimg"><img id="eyes" class="cimg"><img id="hair" class="cimg"><img id="back" class="cimg"><img id="bottom" class="cimg"><img id="top" class="cimg"><img id="hair2" class="cimg"><img id="bgimg"></div>
 <div id="gamestatustext" class="hid"><span id="hour">0:00</span></div>
 <div id="gamestatus" class="hid">
@@ -22,5 +22,5 @@ Spirit: <span id="sptext"></span><div class="bar"><div id="spbar" class="bar2"><
 <button class="menubutton" onclick="menu(4)">SETTINGS</button>
 <button class="menubutton" onclick="menu(5)">CHEATS</button></div>
 </sidebar><div id="infodis"><div id="menu"></div></div>
-<div id="game"><div id="txt"></div></div><div id="nav"><button onclick="elm('gamestatus').classList.remove('hid');elm('gamestatustext').classList.remove('hid');elm('sidebarmenu').classList.remove('hid');reset();next('other/intro')"><big>start</big></button></div>
+<div class="game"><div id="txt"></div></div><div class="game"><div id="nav"><button onclick="elm('gamestatus').classList.remove('hid');elm('gamestatustext').classList.remove('hid');elm('sidebarmenu').classList.remove('hid');reset();elm('version').innerHTML='Version: '+version;next('other/intro')"><big>start</big></button></div></div>
 <a id="fdl" class="hid"></a><input id="fileinput" class="hid" type="file" onchange="loadfile(this.files[0])"/><script src="variables.js"></script><script src="functions.js"></script></body></html>
