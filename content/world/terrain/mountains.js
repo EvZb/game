@@ -34,14 +34,14 @@
         case '4'://find item/chest
             switch(tmpn){
                 case 0:tmpn=rng(4);tmpa=[['Purified  Iron '+['Spear','Sword','Knife','Staff','Axe'][rng(4)],'Spirit Potion','Purified Key','Light Robe','Purified Chest'][tmpn]]
-                    if(tmpn==0){tmpa[1]=[tmpa[0],1,0,7,tmpa[0].split(' ')[2]+'!0!1!1']}else{tmpa[1]=[[tmpa[0],1,5,6,'0!0!20'],[tmpa[0],1,3,8,x],[tmpa[0],1,1,6,'0!1!1']][tmpn-1]}
+                    if(tmpn==0){tmpa[1]=[tmpa[0],1,0,7,tmpa[0].split(' ')[2]+'!0!1!1']}else{tmpa[1]=[[tmpa[0],1,5,6,'0!0!20'],[tmpa[0],1,3,8,x],[tmpa[0],1,1,6,'0!0!1!1']][tmpn-1]}
                         t=`You see something hidden in a ${['crack','hole'][rng(1)]}.`
                         n=`\${btn('grab',"tmpn=1;next()")} | \${btn('ignore',"tmp=x;next()")}`;break
                 case 1:t=`It's a ${tmpa[0]}.`
-                    if(tmpa[0]=='Purified Chest'){if(itm.includes('Purified Key')){t+=` You can open it with your Purified Key.`;n=`\${btn('unlock',"tmpn=2;next()")} | `}else{t=`You don't have a key to unlock it.`;n=``}}
+                    if(tmpa[0]=='Purified Chest'){if(itm.includes('Purified Key')){t+=` You can open it with your Purified Key.`;n=`\${btn('unlock',"tmpn=2;next()")} | `}else{t+=` You don't have a key to unlock it.`;n=``}}
                     else{n=`\${btn('take',"tmpn=2;next()")} | `};n+=`\${btn('leave',"tmp=x;next()")}`;break
                 case 2:let $1=data(0);let $2=$1[1].split('.');$2[pos[2]]-=1;$1[1]=$2.join('.');data(0,$1)
-                    if(tmpa[0]=='Purified Chest'){rem('item','Purified Key');t=`You unlock the chest; it holds a book from a series called "Studying Dragon Fire".`;add('item',['Dragon Fire Book',1,7,6,'6'])}
+                    if(tmpa[0]=='Purified Chest'){remitem('itm','Purified Key');t=`You unlock the chest; it holds a book from a series called "Studying Dragon Fire".`;add('item',['Dragon Fire Book',1,7,6,'1'])}
                     else{additem('itm',tmpa[1]);t=`You take the ${tmpa[0]}.`}
                     n=`\${btn('leave',"tmp=x;next()")}`;break};break
         case '5'://dangerous event

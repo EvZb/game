@@ -1,7 +1,6 @@
 CURRENT:
 
 - working on major area features (city, fort, etc)
-- working on monster generation (will be used for terrain scene)
 - working on crafting and trading
 - working on terrain danger event
 

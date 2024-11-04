@@ -19,22 +19,23 @@ saves=[0,0,0,0,0,0,0]//used to track saves
 ss=[x,'T','F','F','world/',x,'save']//default values for stringv varibles
 sn=[0,1,16,0,2,0,0]//default values for numv variables
 arrn=['tmpan','tech','afft','affr','afflvl','affxp','atk','def','hp','ep','sp','itma','itmt','itmr','mata','matt','matf','matc','matr','pid','pfav','lvl','age','pxp','qloc','wid','wsize','pos','time','ids','sn']//number array names (save/load)
-arrs=['tmpa','aff','itm','itmd','eqp','mat','psn','race','ptag','ptagd','qname','qdata','wname','wchunk','wchunkd','wppl','chunk','chunkd','imgv','ss']//string array names (save/load)
+arrs=['tmpa','aff','itm','itmd','eqp','wpn','mat','psn','race','ptag','ptagd','qname','qdata','wname','wchunk','wchunkd','wppl','chunk','chunkd','imgv','ss']//string array names (save/load)
 sv=[[],[],'','',version]// used in save/load functions
 
 //arrays player
-tech=[0,-1,-1,-1,-1,-1,-1,-1]//int index of the associated affinity [weaponP, weaponE, weaponS, faith, body, energy, spiritual, effect]
+tech=[-1,0,-1,-1,-1,-1,-1,-1]//int index of the associated affinity [weapon, atkP, atkE, atkS, body, energy, spiritual, effect, faith]
 aff=['Hands']//str affinity name (basically a skill name)
-afft=[1]//int affinity type (0=none,1=weaponP,2=weaponE,3=weaponS,4=weaponF,5=physical,6=energy,7=spiritual,8=faith,9=effect,10=skill)
-affr=[8]//int affinity rarity (similar to item rarity, 9 is special and means no xp growth) (Acts as a multiplier for certain effects)
+afft=[1]//int affinity type (0=none,1=atkP,2=atkE,3=atkS,4=physical,5=energy,6=spiritual,7=weapon,8=faith)
+affr=[7]//int affinity rarity (similar to item rarity, 9 is special and means no xp growth) (Acts as a multiplier for certain effects)
 afflvl=[1]
 affxp=[0]
-atk=[0,0,0]//attack[hp,ep,sp]
-def=[0,0,0]//defense[hp,ep,sp]
+atk=[0,0,0,0]//attack[hp,ep,sp,f]
+def=[0,0,0,0]//defense[hp,ep,sp,f]
 hp=[5,5,1]//current,max,level/regen
 ep=[5,5,1]
 sp=[5,5,1]
-eqp=[0,0]//int weaponid, clothesid
+eqp=[x]//int clothing slots (itemname) [clothing] | item data:(slotnumber!def...)
+wpn=[x,x]//int weapon [itemname,affinityname] | item data:(affinity!atk...)
 
 //arrays items
 itm=[x]//str item name
@@ -95,15 +96,15 @@ cfimg=["bgimg","tail","eff1","body","eff2","eyes","hair","back","bottom","top","
 races=['Demon','Abyss','Human','Spirit']
 racev=[['Demon','Succubus','Zombie','Vampire'],['Abyss','Curse','Mimic','Slime'],['Human','Fox','Dog','Cat'],['Spirit','Ghost','God','Elemental']]
 matform=[x,'ingot','bottle','crystal','bag','chunk','ball','roll']//the type of container for a material
-afftype=[x,'physical attack','energy attack','spiritual attack','faith','physical','energy','spiritual','effect','skill']
+afftype=[x,'physical attack','energy attack','spiritual attack','physical','energy','spiritual','weapon','faith']
 matcraft=[x,'Smithing','Alchemy','Imbuing']//crafting uses for materials
 terrains=['desert','forest','jungle','mountains','plains','snow']//update this list after adding terrains
-majorfeatures=['city','fort','sect','village']
+majorfeatures=['city','fort','holy city','sect','village']
 minorfeatures=['forbidden zone','cave','cemetery','monster den','compound','labyrinth','lake','portal','shelter','shrine']//ruin isn't included in world gen
 monsters=['Ooze','Snake','Winder','Tendrid','Spider','Wolf','Worm','Plantel','Scorpion','Bear','Wraith','Troll','Yokai','Dragon']
 monsterattack=['acid','fangs','wind','vine','bite','bite','bite','mist','stinger','claws','wraith mist','fist','curse','dragon breath']
-monsterstats=['0.1.0.1.0.1.5.6.5','1.0.0.0.1.1.5.5.6','0.1.1.0.0.0.5.5.5','1.1.0.0.0.0.5.5.6','2.0.0.0.0.0.5.5.6','2.0.0.0.1.1.7.7.6','2.1.0.0.0.1.7.7.6','0.2.2.0.0.0.7.6.7','2.1.0.1.0.0.8.6.6','3.0.0.1.1.0.9.8.7','0.0.3.2.0.0.7.7.10','3.2.0.0.0.0.8.8.8','0.2.2.0.1.0.10.7.7','1.1.1.1.1.1.8.10.10']
-monstergrowth=['0.1.0.1.0.0.1.2.1','0.1.0.0.0.0.2.2.1','0.1.1.1.0.0.1.1.1','1.1.0.0.0.0.2.1.1','0.1.0.1.0.0.1.2.1','1.0.0.0.0.0.2.2.2','1.1.0.0.0.1.1.2.0','0.1.1.0.1.0.1.1.1','0.1.0.1.0.1.1.1.1','2.0.0.1.1.1.1.1.1','0.0.2.1.1.1.1.1.1','1.1.0.0.0.0.2.2.2','0.1.1.1.1.1.0.1.1','1.1.1.1.1.1.1.1.1']
+monsterstats=['0.0.1.0.0.1.0.1.5.6.5','0.1.0.0.0.0.1.1.5.5.6','0.0.1.1.0.0.0.0.5.5.5','0.1.1.0.0.0.0.0.5.5.6','0.2.0.0.0.0.0.0.5.5.6','0.2.0.0.0.0.1.1.7.7.6','0.2.1.0.0.0.0.1.7.7.6','0.0.2.2.0.0.0.0.7.6.7','0.2.1.0.0.1.0.0.8.6.6','0.3.0.0.0.1.1.0.9.8.7','0.0.0.3.0.2.0.0.7.7.10','0.3.2.0.0.0.0.0.8.8.8','0.0.2.2.0.0.1.0.10.7.7','0.1.1.1.0.1.1.1.8.10.10']//(atk.def.hp) (f.h.e.s).(f.h.e.s).(h.e.s)
+monstergrowth=['0.0.1.0.0.1.0.0.1.2.1','0.0.1.0.0.0.0.0.2.2.1','0.0.1.1.0.1.0.0.1.1.1','0.1.1.0.0.0.0.0.2.1.1','0.0.1.0.0.1.0.0.1.2.1','0.1.0.0.0.0.0.0.2.2.2','0.1.1.0.0.0.0.1.1.2.0','0.0.1.1.0.0.1.0.1.1.1','0.0.1.0.0.1.0.1.1.1.1','0.2.0.0.0.1.1.1.1.1.1','0.0.0.2.0.1.1.1.1.1.1','0.1.1.0.0.0.0.0.2.2.2','0.0.1.1.0.1.1.1.0.1.1','0.1.1.1.0.1.1.1.1.1.1']//added to stats for every level
 monsterloot=['Ooze Acid.6.2.2','Snake Scale.6.4.1','Winder Core.7.0.1','Tendrid Vine.5.0.1','Spider Venom.5.0.2','Wolf Fur.5.7.1','Worm Skin.6.7.1','Plantel Core.7.0.1',x,x,x,x,x,x]
 monstervariants=[x,'Spikey','Ice','Ash','Ground','Metal','Stone','Green','Brown','Poison','Water','Fire','Plant','Mud','Sand','Red','Yellow','Illusory','Mist','Smoke','Death','Wind','Dust','Pink','Blue','Dark','Light','White','Black']
 monstervariantbonus=[-1,0,3,0,3,3,3,0,0,1,4,1,4,4,4,1,1,2,2,5,2,2,5,5,5,-1,-1,-1,-1]
@@ -117,7 +118,7 @@ sex=['Female','Male']
 //script category arrays
 world=['wid','wname','wsize','wchunk','wppl']
 item=['itm','itma','itmt','itmr','itmd']
-itype=['Weapon','Clothes','Consumable','Item','Valuable','Food','Tool','Book']//equip:(slots type)XstatXnumXetc,charm:truthyXeval,consumable:statXnumXetc,item:nothing,consumable:eval,material:amountXtypeX(affinityXlevel)
+itype=['Weapon','Clothes','Consumable','Item','Valuable','Food','Tool','Book']//Weapon,Item:nothing,Consumable:evalstring,Valuable:money,Food:hp!ep!sp,Tool:evalstring,Book:levelincrease
 affinity=['aff','afft','affr','afflvl','affxp']
 person=['pid','psn','race','pfav','lvl','age','pxp','ptag','ptagd']
 material=['mat','mata','matt','matf','matc','matr']

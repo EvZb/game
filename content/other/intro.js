@@ -4,7 +4,7 @@
         saving="T"
         tmpn=1;
         t=`Welcome to \${col('red','UNNAMED GAME')+' '+col('lightyellow','The general gameplay is still being developed.')} The game uses inspirations from many fantasy settings; some words may not match your preconception.<br><br>Navigate the game using the buttons (colored text) below.`
-        n=`save name: <textarea id="stext" style="resize:none" cols=32 rows=1 maxlength=32>save</textarea> (a save name is required)<br><br> \${btn('next',"if(elm('stext').value!=''){savename=elm('stext').value;next()}")}`
+        n=`Save name: <textarea id="stext" style="resize:none" cols=32 rows=1 maxlength=32>save</textarea> (a save name is required)<br><br> \${btn('next',"if(elm('stext').value!=''){savename=elm('stext').value;next()}")}`
         if(localStorage.UGS==undefined){localStorage['UGS']=saves.join()};break
     case 1://player name
         saving="F"
@@ -24,8 +24,8 @@
         n=`Variant: \${lst('va',"${$2}","race[0]=race[0].arr(1,elm('va').value,'')")}<br><br>\${btn('mystery',"race[0]=race[0].arr(1,${rng(3)},'');next()")} | \${btn('next',"next()")}`;break
     case 4://world settings
         tmpn=5
-        let $1=[['2!2!2!2!Demon Fire','1!2!3!3!Succubus Charm','4!1!1!1!Zombie Strength','1!3!2!2!Vampire Blood'],['3!1!2!1!Abyss Tentacle','1!2!3!3!Curse Illusion','1!3!2!3!Mimic Illusion','3!2!1!2!Slime Acid'],['2!2!2!1!Martial Arts','1!2!3!3!Fox Trick','3!2!1!2!Dog Bite','1!3!2!1!Cat Claw'],['1!2!3!1!Spirit Blade','1!3!2!3!Ghost Haunt','1!1!4!4!God Faith','1!4!1!2!Elemental Energy']]
-        let $3=$1[race[0][0]][race[0][1]].split('!');hp[1]*=$3[0];ep[1]*=$3[1];sp[1]*=$3[2];heal(0,20);if(aff.length>1){rem('affinity',1)};aff[0]='Hands';affr[0]=8;tech[1]=-1;tech[2]=-1;tech[3]=-1;if($3[3]==1){aff[0]=$3[4];affr[0]=7}else{add('affinity',[$3[4],Number($3[3]),7,1,0]);tech[$3[3]-1]=1}
+        let $1=[['2!2!2!2!Demon Fire','1!2!3!3!Succubus Charm','4!1!1!1!Zombie Strength','1!3!2!2!Vampire Blood'],['3!1!2!1!Abyss Tentacle','1!2!3!3!Curse Illusion','1!3!2!3!Mimic Illusion','3!2!1!2!Slime Acid'],['2!2!2!1!Martial Arts','1!2!3!3!Fox Trick','3!2!1!2!Dog Bite','1!3!2!1!Cat Claw'],['1!2!3!1!Spirit Blade','1!3!2!3!Ghost Haunt','1!1!4!8!God Faith','1!4!1!2!Elemental Energy']]
+        let $3=$1[race[0][0]][race[0][1]].split('!');hp[1]*=$3[0];ep[1]*=$3[1];sp[1]*=$3[2];heal(0,20);tech[1]=-1;tech[2]=-1;tech[3]=-1;aff[0]=$3[4];afft[0]=Number($3[3]);tech[$3[3]]=0
         t=`Choose the starting world size.<br><br>World size is exponential (A size of 2 is equal to 4 chunks. Each chunk has a major location and a terrain type). A size of 4 is recommended`
         n=`Starting world size: \${lst('cws',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} | Max world size: \${lst('mws',"2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9")} (for other worlds)<br><br>\${btn('start',"wsize[0]=1*elm('cws').value;mwsize=1*elm('mws').value;next()")}`;break
     case 5://start

@@ -40,7 +40,7 @@
             if(tmp=="nothing"){
                 n=`${btn("leave","tmpn=2;next()")}`}
             else{
-                if(tmp=="a gold ingot"){add('material',['Gold',1,5,1,1,7])}else{money+=rng(10,5)}
+                if(tmp=="a gold ingot"){additem('mat',['Gold',1,5,1,1,7])}else{money+=rng(10,5)}
                 n=`\${btn("take it","if(rng(2)==0){tmpn=8}else{tmpn=2};next()")} or \${btn("leave it","tmpn=2;next()")}`}
             break;
         case 8://fight

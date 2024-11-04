@@ -34,14 +34,14 @@
         case '4'://find item/chest
             switch(tmpn){
                 case 0:tmpn=rng(4);tmpa=[['Thin Steel '+['Spear','Sword','Knife','Staff','Axe'][rng(4)],'Health Potion','Steel Key','Shaded Robe','Steel Chest'][tmpn]]
-                    if(tmpn==0){tmpa[1]=[tmpa[0],1,0,7,tmpa[0].split(' ')[2]+'!2!0!0']}else{tmpa[1]=[[tmpa[0],1,5,6,'20!0!0'],[tmpa[0],1,3,8,x],[tmpa[0],1,1,6,'0!0!2']][tmpn-1]}
+                    if(tmpn==0){tmpa[1]=[tmpa[0],1,0,7,tmpa[0].split(' ')[2]+'!2!0!0']}else{tmpa[1]=[[tmpa[0],1,5,6,'20!0!0'],[tmpa[0],1,3,8,x],[tmpa[0],1,1,6,'0!0!0!2']][tmpn-1]}
                         t=`You see something hidden under some ${['roots','rocks'][rng(1)]}.`
                         n=`\${btn('uncover',"tmpn=1;next()")} | \${btn('ignore',"tmp=x;next()")}`;break
                 case 1:t=`It's a ${tmpa[0]}.`
-                    if(tmpa[0]=='Steel Chest'){if(itm.includes('Steel Key')){t+=` You can open it with your Steel Key.`;n=`\${btn('unlock',"tmpn=2;next()")} | `}else{t=`You don't have a key to unlock it.`;n=``}}
+                    if(tmpa[0]=='Steel Chest'){if(itm.includes('Steel Key')){t+=` You can open it with your Steel Key.`;n=`\${btn('unlock',"tmpn=2;next()")} | `}else{t+=` You don't have a key to unlock it.`;n=``}}
                     else{n=`\${btn('take',"tmpn=2;next()")} | `};n+=`\${btn('leave',"tmp=x;next()")}`;break
                 case 2:let $1=data(0);let $2=$1[1].split('.');$2[pos[2]]-=1;$1[1]=$2.join('.');data(0,$1)
-                    if(tmpa[0]=='Steel Chest'){rem('item','Steel Key');t=`You unlock the chest; it holds a book from an unnamed series. It's titled "Blood Mist".`;add('item',['Blood Mist Book',1,7,6,'7'])}
+                    if(tmpa[0]=='Steel Chest'){remitem('itm','Steel Key');t=`You unlock the chest; it holds a book from an unnamed series. It's titled "Blood Mist".`;add('item',['Blood Mist Book',1,7,6,'1'])}
                     else{additem('itm',tmpa[1]);t=`You take the ${tmpa[0]}.`}
                     n=`\${btn('leave',"tmp=x;next()")}`;break};break
         case '5'://dangerous event
