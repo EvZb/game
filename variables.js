@@ -9,17 +9,17 @@ n=''//str js convert to html game navigation (save/load)
 sidemenu=0//str keeps track of what menu is open
 u=undefined
 x='none'//used to simplify script | 'none' is used instead of empty strings in variables/arrays because of saving and loading problems
-strv=['tmp','saving','combat','safe','w','_','savename']//variables to initialize and save as strings (tmp is used by scenes, saving is for disabling the save menu, w is for simplifying the file path _ is the path of the last scene used)
-numv=['tmpn','namegennum','fsize','cworldid','mwsize','money','savenum']//variables to initialize and save as numbers (tmpn is used by scenes namegennum is the selected name generator, fsize is font size, cworldid is the index of the current world)
+strv=['tmp','tmp2','saving','combat','safe','w','_','savename']//variables to initialize and save as strings (tmp is used by scenes, saving is for disabling the save menu, w is for simplifying the file path _ is the path of the last scene used)
+numv=['tmpn','namegennum','fsize','cworldid','mwsize','money','savenum','follow']//variables to initialize and save as numbers (tmpn is used by scenes, namegennum=selected name generator, fsize=font size, cworldid=current world index, mwsize=max world size, savenum tracks the amount of saves, follow=follower pid)
 tmpa=[x]//a string array for use across scenes
 tmpan=[0]//a number array for use across scenes
 
 //save/load arrays
 saves=[0,0,0,0,0,0,0]//used to track saves
-ss=[x,'T','F','F','world/',x,'save']//default values for stringv varibles
-sn=[0,1,16,0,2,0,0]//default values for numv variables
-arrn=['tmpan','tech','afft','affr','afflvl','affxp','atk','def','hp','ep','sp','itma','itmt','itmr','mata','matt','matf','matc','matr','pid','pfav','lvl','age','pxp','qloc','wid','wsize','pos','time','ids','sn']//number array names (save/load)
-arrs=['tmpa','aff','itm','itmd','eqp','wpn','mat','psn','race','ptag','ptagd','qname','qdata','wname','wchunk','wchunkd','wppl','chunk','chunkd','imgv','ss']//string array names (save/load)
+ss=[x,x,'T','F','F','world/',x,'save']//default values for stringv varibles
+sn=[0,1,16,0,2,0,0,-1]//default values for numv variables
+arrn=['tmpan','tech','afft','affr','afflvl','affxp','atk','def','hp','ep','sp','itma','itmt','itmr','mata','matt','matf','matc','matr','pid','pfav','lvl','age','pxp','wid','wsize','pos','time','ids','sn']//number array names (save/load)
+arrs=['tmpa','aff','itm','itmd','eqp','wpn','mat','psn','race','ptag','ptagd','wname','wchunk','wchunkd','wppl','chunk','chunkd','imgv','ss']//string array names (save/load)
 sv=[[],[],'','',version]// used in save/load functions
 
 //arrays player
@@ -51,11 +51,6 @@ matt=[0]//int material affinity type (5-7 | physical,energy,spiritual)
 matf=[0]//int material form (0=none,1=ingot,ect)
 matc=[0]//int material crafting usage (0=Cooking,1=Smithing,etc)
 matr=[8]//int rarity (0=rare upto 8=notrare or 9=black)
-
-//arrays quests
-qname=[x]
-qloc=[-1]
-qdata=[x]
 
 //arrays person
 pid=[0]//int

@@ -5,14 +5,15 @@
             tmpn=tmpan[0];tmpan=[0]
             t=`You return to the path.`
             n=`\${btn('next',"next('other/explore')")}`;break
-        case 'win':t=`You take loot the corpse before leaving.`;n=`\${btn('leave',"tmp=x;next()")}`;break
-        case 'lose':t=`You escape and take some time to recover.`;ptime([45]);heal(0,1);n=`\${btn('leave',"tmp=x;next()")}`;break
+        case 'cbt':
+            if(tmp2=='win'){t=`You take loot the corpse before leaving.`}else{t=`You escape and take some time to recover.`;ptime([45]);heal(0,1)};n=`\${btn('leave',"tmp=x;next()")}`
+            tmp2=x;break
         case '0':
             t=`You find ${['nothing','some old monster tracks','an empty basket','claw marks on a tree'][rng(3)]}.`
             n=`\${btn('next',"tmp=x;next()")}`;break
         case '1':
             let $1=monster(['Snake','Plantel','Tendrid','Wolf','Bear','Wraith'][rng(5)],rng(2,1),[x,'Spikey','Ash','Smoke','Death','Black'][rng(5)])
-            tmpa=[$1[3],$1[4],$1[1],$1[0],$1[5],x,'0',x,tmpan.join(),'world/terrain/snow']
+            tmpa=[$1[3],$1[4],$1[1],$1[0],$1[5],x,'world/terrain/forest','cbt','0',x,tmpan.join()]
             tmpan=[$1[6],1,...$1[2].split(',').map(Number),0]
             $1[0]='Level '+$1[6]+' '+$1[0]
             switch(rng(2)){

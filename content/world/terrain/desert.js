@@ -5,14 +5,15 @@
             tmpn=tmpan[0];tmpan=[0]
             t=`You return to the path.`
             n=`\${btn('next',"next('other/explore')")}`;break
-        case 'win':t=`You take loot the corpse before leaving.`;n=`\${btn('leave',"tmp=x;next()")}`;break
-        case 'lose':t=`You escape and take some time to recover.`;ptime([45]);heal(0,1);n=`\${btn('leave',"tmp=x;next()")}`;break
+        case 'cbt':
+            if(tmp2=='win'){t=`You take loot the corpse before leaving.`}else{t=`You escape and take some time to recover.`;ptime([45]);heal(0,1)};n=`\${btn('leave',"tmp=x;next()")}`
+            tmp2=x;break
         case '0':
             t=`You find ${['nothing','some old monster tracks in the sand','a broken pot','a dead bush','blood stains in the sand'][rng(4)]}.`
             n=`\${btn('next',"tmp=x;next()")}`;break
         case '1':
             let $1=monster(['Ooze','Snake','Winder','Worm','Scorpion','Yokai'][rng(5)],rng(2,1),[x,'Fire','Sand','Red','Yellow','Dust'][rng(5)])
-            tmpa=[$1[3],$1[4],$1[1],$1[0],$1[5],x,'0',x,tmpan.join(),'world/terrain/snow']
+            tmpa=[$1[3],$1[4],$1[1],$1[0],$1[5],x,'world/terrain/desert','cbt','0',x,tmpan.join()]
             tmpan=[$1[6],1,...$1[2].split(',').map(Number),0]
             $1[0]='Level '+$1[6]+' '+$1[0]
             switch(rng(2)){
@@ -44,7 +45,9 @@
                     if(tmpa[0]=='Eroded Chest'){remitem('itm','Eroded Key');t=`You unlock the chest; it holds a book from a series called "Sand Wind Magic".`;add('item',['Sand Wind Book',1,7,6,'1'])}
                     else{additem('itm',tmpa[1]);t=`You take the ${tmpa[0]}.`}
                     n=`\${btn('leave',"tmp=x;next()")}`;break};break
-        case '5'://dangerous event
+        case '5'://dangerous event REDO FOR COMBAT AND FAINTING
+            tmp=x;n=`\${btn('back',"next()")}`;t=`You find nothing.`
+            /*
             switch(tmpa[0]){
                 case x:tmpa=[['worm','pit'][rng(1)]]
                     t=`As you explore the area, the sand starts shifting under you.`
@@ -68,11 +71,7 @@
                     n=`\${btn('combat',"next('other/combat')")}`
                     if(tmpn==1){tmp='alert'}else{tmp='stealth'};tmpr(tmp,0,'material,Giant Worm teeth.2.5.4.1.5,8.4.0.4.4.4.20.18.14,Giant Sand Worm,big bite,none,'+tmpan[1]+',tmpa,'+tmpan[0]+',world/terrain/desert','5,1,20,18,14,0');break
                 case 'wake':ep[0]-=3;sbu('ep');tmp=x;t=`You awaken in a pit. You climb out after some effort.`;n=`\${btn('next',"next()")}`;break};break
-        case 'win':tmpan.push(0);n=`\${btn('leave',"tmp=x;next()")}`
-                if(tmpa[0]=='win'){t=`You leave after collecting your loot.`}
-                else{ptime([30,1]);heal();t=`After your defeat, you take some time to recover.`};break
-        case 'lose':tmpan.push(0);n=`\${btn('leave',"tmp=x;next()")}`
-                if(tmpa[0]=='win'){t=`You leave after collecting your loot.`}
-                else{ptime([30,1]);heal();t=`After your defeat, you take some time to recover.`};break}
+        */
+        }
     end()
 })()

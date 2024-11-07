@@ -1,6 +1,6 @@
-(function () {
-    //tmp=combat state | no reset
-    //tmpa=[loot type, data, atks.defs.stats max, enemy type, atk name, player atk, tmpn, tmpa, tmpan, next]
+(function () {//tpm2=win/lose
+    //tmp=combat state
+    //tmpa=[loot type, data, atks.defs.stats max, enemy type, atk name, player atk, next, tmp, tmpn, tmpa, tmpan]
     //tmpan=[lvl, count, hp, ep, sp, round]
     if(tmp=='attack'||tmp=='alert'||tmp=='stealth'){combat='T'
         if(tmp=='stealth'&&tmpa[5]!=x){tmp='alert'}
@@ -21,7 +21,7 @@
             else if(tmp=='attack'){t+=`<br><br>The ${tmpa[3]} attacks you.`
                 if($3+rng(50)>95){t+=` The ${tmpa[4]} fails to hurt you.`}
                 else{t+=` The ${tmpa[4]} hits you.`
-                    hp[0]-=Math.max(0,$1[1]+Math.max(0,$1[0]-def[3])-def[0]-(afflvl[tech[4]]|0));ep[0]-=Math.max(0,$1[2]+Math.max(0,$1[0]-def[3])-def[1]-(afflvl[tech[5]]|0));sp[0]-=Math.max(0,$1[3]+Math.max(0,$1[0]-def[3])-def[2]-(afflvl[tech[6]]|0))}
+                    hp[0]-=Math.max(0,$1[1]+Math.max(0,$1[0]-def[3])-def[0]-(afflvl[tech[4]]??0));ep[0]-=Math.max(0,$1[2]+Math.max(0,$1[0]-def[3])-def[1]-(afflvl[tech[5]]??0));sp[0]-=Math.max(0,$1[3]+Math.max(0,$1[0]-def[3])-def[2]-(afflvl[tech[6]]??0))}
                 if(hp[0]<1||ep[0]<1||sp[0]<1){tmp='lose'};sbu()}}
         else{t+=`The enemy hasn't detected you.`}
         if(tech[1]>-1&&tmpa[5]!=1){$2+=','+aff[tech[1]]+':1'}
@@ -33,12 +33,13 @@
     else{combat='F'
         xp2(0,1,Math.max(1,tmpan[0]-lvl[0]))
         if(tmp=='win'){
+            tmp2='win'
             t=`You have defeated the enemy.`
             if(tmpa[0]=='item'){additem('itm',tmpa[1].split('.'))}
             else if(tmpa[0]=='material'){additem('mat',tmpa[1].split('.'))}
             else if(tmpa[0]=='money'){money+=Number(tmpa[1])}}
-        else{t=`You are too weak to continue.`}
-        n=`\${btn('next',"next('${tmpa[9]}')")}`;tmpr(tmp,tmpa[6],tmpa[7],tmpa[8])
+        else{tmp2='lose';t=`You are too weak to continue.`}
+        n=`\${btn('next',"next('${tmpa[6]}')")}`;tmpr(tmpa[7]??x,tmpa[8]??0,tmpa[9]??x,tmpa[10]??'0')
     }
     end()
 })()

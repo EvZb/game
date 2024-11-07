@@ -27,6 +27,6 @@ textarea {background: #888; transform: translateY(5px); font-size: inherit}
 #sidebarmenu {margin: 1%}
 #infodis {display: none; box-sizing: border-box; position: absolute; z-index: 1; margin-left: 20em; width: 50%; height: 80%; border: 3px solid dimgrey; padding: 1%; background: #222; overflow: auto}
 #txt {text-align: center}
-::-webkit-scrollbar {width: 6px}
-::-webkit-scrollbar-track {background: #AAA}
+::-webkit-scrollbar {width: 7px}
+::-webkit-scrollbar-track {background: #999}
 ::-webkit-scrollbar-thumb {background: #666}
