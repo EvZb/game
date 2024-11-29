@@ -6,8 +6,9 @@
             t=`You return to the path.`
             n=`\${btn('next',"next('other/explore')")}`;break
         case 'cbt':
-            if(tmp2=='win'){t=`You take loot the corpse before leaving.`}else{t=`You escape and take some time to recover.`;ptime([45]);heal(0,1)};n=`\${btn('leave',"tmp=x;next()")}`
-            tmp2=x;break
+            if(tmp2=='win'){t=`You take loot the corpse before leaving.`}
+            else{t=`You escape and take some time to recover.`;ptime([45]);heal(0,1)}
+            n=`\${btn('leave',"tmp=x;tmp2=x;next()")}`;break
         case '0':
             t=`You find ${['nothing','some old monster tracks in the mud','an empty basket','claw marks on a tree'][rng(3)]}.`
             n=`\${btn('next',"tmp=x;next()")}`;break
@@ -47,35 +48,31 @@
                     n=`\${btn('leave',"tmp=x;next()")}`;break};break
         case '5'://dangerous event
                 tmp=x;n=`\${btn('back',"next()")}`;t=`You find nothing.`
-        /* GIANT PLANTEL?
             switch(tmpa[0]){
-                case x:tmpa=[['worm','pit'][rng(1)]]
-                    t=`As you explore the area, the sand starts shifting under you.`
-                    n=`\${btn('run',"tmpn=1;next()")} | \${btn('hide',"tmpn=2;next()")}`;break
-                case 'worm':
-                    if(tmpn==1){t=`As you are running away, a Giant Sand Worm comes out of the sand. Your movement attracts the worm toward you.`
+                case x:tmpa=[['hunt','vine'][rng(1)]]
+                    t=`As you explore the area, you find that many thick vines are beginning to surroud you.`
+                    n=`\${btn('run',"tmpn=1;next()")} | \${btn('stay still',"tmpn=2;next()")}`;break
+                case 'hunt':
+                    if(tmpn==1){t=`As you run away, the vines follow. A Giant Tendrid is chasing you.`
                         n=`\${btn('fight',"tmpa=['fight'];next()")} | \${btn('keep running',"tmpa=['escape'];next()")}`}
-                    else{t=`You hide behind some rocks as a Giant Sand Worm comes out from the ground. It hasn't detected you.`
-                        n=`\${btn('fight',"tmpa=['fight'];next()")} | \${btn('keep hiding',"tmpa=['escape'];next()")}`};break
-                case 'pit':
-                    if(tmpn==1){tmp=x;t=`As you are running away, the sand starts falling into a pit behind you. You manage to avoid falling in.`;n=`\${btn('next',"next()")}`}
-                    else{tmpn=0;tmpa=['fall'];t=`You hide behind some rocks, but the ground below you starts falling into a pit. You try to escape, but fall in as well.`;n=`\${btn('fall',"next()")}`};break
+                    else{t=`You stand still as a Giant Tendrid passes by you. Its tendrils havent found you.`
+                        n=`\${btn('fight',"tmpa=['fight'];next()")} | \${btn('keep still',"tmpa=['escape'];next()")}`};break
+                case 'vine':
+                    if(tmpn==1){tmp=x;t=`As you run away, you notice some vines explore where you were standing. You manage to escape without them finding you.`;n=`\${btn('next',"next()")}`}
+                    else{tmpn=0;tmpa=['found'];t=`You stay still as the vines continue to surround you. Some of them wrap around you, sapping your strength.`;n=`\${btn('found',"next()")}`};break
                 case 'escape':ptime[30]
-                    if(tmpn==1){ep[0]-=10;sbu('ep');t=`After a while, you manage to escape the Giant Sand Worm.`;tmp=x;n=`\${btn('next',"next()")}`}
-                    else{t=`You keep hiding until the Giant Sand Worm leaves.`;tmp=x;n=`\${btn('next',"next()")}`};break
-                case 'fall':hp[0]-=10;sbu('hp')
-                    if(hp[0]<1){t=`You lose consciousness.`;n=`\${btn("next","tmpa=['faint',w+'terrain/desert',x,${tmpn},'wake','${tmpan.join()}'];tmpn=2;next('other/rest')")}`}
-                    else{ep[0]-=3;sbu('ep');tmp=x;t=`You climb out after some effort.`;n=`\${btn('leave',"next()")}`};break
+                    if(tmpn==1){ep[0]-=10;sbu('ep');t=`After a while, you manage to escape the Giant Tendrid.`;tmp=x;n=`\${btn('next',"next()")}`}
+                    else{t=`You keep hiding until the Giant Tendrid leaves the area completely.`;tmp=x;n=`\${btn('next',"next()")}`};break
+                case 'found':hp[0]-=7;ep[0]-=7;sbu()
+                    if(hp[0]<1||ep[0]<1){t=`They continue to sap you until you lose consciousness.`;n=`\${btn("next","tmpa=['faint',w+'terrain/jungle','5',0,'wake','${tmpan.join()}'];tmpn=2;next('other/rest')")}`}
+                    else{tmp=x;t=`After a moment, the vines seems satisfied and retreat without you having to fight them.`;n=`\${btn('leave',"next()")}`};break
                 case 'fight':if(tmpan[1]==1){tmpan[0]=100-tmpan[0]}
-                    t=`You decide to fight the Giant Sand Worm.`
+                    t=`You decide to fight the Giant Tendrid.`
                     n=`\${btn('combat',"next('other/combat')")}`
-                    if(tmpn==1){tmp='alert'}else{tmp='stealth'};tmpr(tmp,0,'material,Giant Worm teeth.2.5.4.1.5,8.4.0.4.4.4.20.18.14,Giant Sand Worm,big bite,none,'+tmpan[1]+',tmpa,'+tmpan[0]+',world/terrain/desert','5,1,20,18,14,0');break
-                case 'wake':ep[0]-=3;sbu('ep');tmp=x;t=`You awaken in a pit. You climb out after some effort.`;n=`\${btn('next',"next()")}`;break};break
-        case 'win':tmpan.push(0);n=`\${btn('leave',"tmp=x;next()")}`
-                if(tmpa[0]=='win'){t=`You leave after collecting your loot.`}
-                else{ptime([30,1]);heal();t=`After your defeat, you take some time to recover.`};break
-        case 'lose':tmpan.push(0);n=`\${btn('leave',"tmp=x;next()")}`
-                if(tmpa[0]=='win'){t=`You leave after collecting your loot.`}
-                else{ptime([30,1]);heal();t=`After your defeat, you take some time to recover.`}*/;break}
+                    if(tmpn==1){tmp='alert'}
+                    else{tmp='stealth'}
+                    tmpa=['material','Giant Tendrid vine.2.4.0.2.5','0.6.6.0.0.5.0.0.15.10.11','Giant Tendrid','thick tendrils',x,'world/terrain/jungle','cbt','0','x',tmpan.join()]
+                    tmpan=[5,1,20,18,14,0];break
+                case 'wake':tmp=x;t=`You awaken after a while and find that the vines are gone.`;n=`\${btn('next',"next()")}`;break};break}
     end()
 })()

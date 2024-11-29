@@ -1,8 +1,6 @@
 CURRENT:
 
-- working on major area features (city, fort, etc)
-- working on crafting and trading
-- working on terrain danger event
+- development suspended
 
 KNOWN BUGS:
 
@@ -17,4 +15,6 @@ TODO / IDEAS (NO PARTICULAR ORDER / SUBJECT TO CHANGE):
 - add multiple worlds (after content)
 - add more settings (low prio)
 - add npc interaction scene
--
+- major area features (city, fort, etc)
+- crafting and trading
+- terrain danger events

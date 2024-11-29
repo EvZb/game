@@ -6,8 +6,9 @@
             t=`You return to the path.`
             n=`\${btn('next',"next('other/explore')")}`;break
         case 'cbt':
-            if(tmp2=='win'){t=`You take loot the corpse before leaving.`}else{t=`You escape and take some time to recover.`;ptime([45]);heal(0,1)};n=`\${btn('leave',"tmp=x;next()")}`
-            tmp2=x;break
+            if(tmp2=='win'){t=`You take loot the corpse before leaving.`}
+            else{t=`You escape and take some time to recover.`;ptime([45]);heal(0,1)}
+            n=`\${btn('leave',"tmp=x;tmp2=x;next()")}`;break
         case '0':
             t=`You find ${['nothing','some old monster tracks','an empty cloth bag','an animal trail in the grass'][rng(3)]}.`
             n=`\${btn('next',"tmp=x;next()")}`;break
@@ -64,18 +65,15 @@
                     if(tmpn==1){ep[0]-=10;sbu('ep');t=`After a while, you manage to escape the Giant Sand Worm.`;tmp=x;n=`\${btn('next',"next()")}`}
                     else{t=`You keep hiding until the Giant Sand Worm leaves.`;tmp=x;n=`\${btn('next',"next()")}`};break
                 case 'fall':hp[0]-=10;sbu('hp')
-                    if(hp[0]<1){t=`You lose consciousness.`;n=`\${btn("next","tmpa=['faint',w+'terrain/desert',x,${tmpn},'wake','${tmpan.join()}'];tmpn=2;next('other/rest')")}`}
+                    if(hp[0]<1){t=`You lose consciousness.`;n=`\${btn("next","tmpa=['faint',w+'terrain/plains','5',0,'wake','${tmpan.join()}'];tmpn=2;next('other/rest')")}`}
                     else{ep[0]-=3;sbu('ep');tmp=x;t=`You climb out after some effort.`;n=`\${btn('leave',"next()")}`};break
                 case 'fight':if(tmpan[1]==1){tmpan[0]=100-tmpan[0]}
                     t=`You decide to fight the Giant Sand Worm.`
                     n=`\${btn('combat',"next('other/combat')")}`
-                    if(tmpn==1){tmp='alert'}else{tmp='stealth'};tmpr(tmp,0,'material,Giant Worm teeth.2.5.4.1.5,8.4.0.4.4.4.20.18.14,Giant Sand Worm,big bite,none,'+tmpan[1]+',tmpa,'+tmpan[0]+',world/terrain/desert','5,1,20,18,14,0');break
-                case 'wake':ep[0]-=3;sbu('ep');tmp=x;t=`You awaken in a pit. You climb out after some effort.`;n=`\${btn('next',"next()")}`;break};break
-        case 'win':tmpan.push(0);n=`\${btn('leave',"tmp=x;next()")}`
-                if(tmpa[0]=='win'){t=`You leave after collecting your loot.`}
-                else{ptime([30,1]);heal();t=`After your defeat, you take some time to recover.`};break
-        case 'lose':tmpan.push(0);n=`\${btn('leave',"tmp=x;next()")}`
-                if(tmpa[0]=='win'){t=`You leave after collecting your loot.`}
-                else{ptime([30,1]);heal();t=`After your defeat, you take some time to recover.`}*/;break}
+                    if(tmpn==1){tmp='alert'}
+                    else{tmp='stealth'}
+                    tmpa=['material','Giant Worm teeth.2.5.4.1.5','0.8.4.0.0.4.4.4.20.18.14','Giant Sand Worm','big bite',x,'world/terrain/plains','cbt','0','x',tmpan.join()]
+                    tmpan=[5,1,20,18,14,0];break
+                case 'wake':ep[0]-=3;sbu('ep');tmp=x;t=`You awaken in a pit. You climb out after some effort.`;n=`\${btn('next',"next()")}`;break}*/;break}
     end()
 })()
